@@ -222,11 +222,11 @@
     "its-skills": {
       "flake": false,
       "locked": {
-        "lastModified": 1792480847,
-        "narHash": "sha256-sujpPEQ5lpZzjUvT0t8QEbHpqRJfJ5zftL23QgNM8g4=",
+        "lastModified": 1793227776,
+        "narHash": "sha256-npRjLGaMPMa+bDV0uA33H2UCYp88OPGzEj6OY8cCLk4=",
         "owner": "ItsEthanDev",
         "repo": "its-skills",
-        "rev": "caa4bfebfc4305df6694c72ca6ad862f624c011d",
+        "rev": "164470c4e497049d33ae9ecf83afa28e71fba685",
         "type": "github"
       },
       "original": {

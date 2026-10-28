@@ -8,6 +8,14 @@ Care about the codebase. Treat the requested result and the long-term quality of
 
 After completing and verifying a requested change, commit only the files belonging to that change unless the user asks you not to. Do not commit incomplete work or changes whose scope is ambiguous; report why no commit was made. Never push without an explicit request.
 
+## Design for simplicity
+
+When integrating a change, don't bolt it onto the existing design. Redesign as if the requirement had been a foundational assumption from the start. Ask: "If we were writing this from scratch with this new requirement, what would we build?"
+
+When evolving a system, remove complexity first, then build. Default to subtraction. Make simplification a continual investment. Leave the design slightly simpler and more capable behind the same or smaller surface than you found it.
+
+Cut before you polish (minimize scope before polishing, without compromising correctness). Design for observed usage and explicit requirements, not speculative edge cases. No speculative validators, parsers, or guards beyond what the requirements demand.
+
 ## Writing and responses
 
 Write direct, concrete prose. Lead with the answer, action, or decision the reader needs.
