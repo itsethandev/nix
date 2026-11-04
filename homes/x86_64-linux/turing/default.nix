@@ -106,6 +106,7 @@
           "super+n=new_window"
           "ctrl+shift+,=reload_config"
           "shift+insert=paste_from_clipboard"
+          "ctrl+shift+v=paste_from_clipboard"
           "ctrl+insert=copy_to_clipboard"
           "ctrl+shift+-=decrease_font_size:1"
           "ctrl+shift+==increase_font_size:1"
@@ -119,6 +120,12 @@
         window-padding-x = 4;
         window-save-state = "always";
       };
+    };
+    hex.settings = {
+      "labs.live_text" = true;
+      "labs.spoken_formatting" = true;
+      "labs.spoken_symbols" = true;
+      "labs.filler_words" = true;
     };
     home-manager.enable = true;
     lazygit.enable = true;

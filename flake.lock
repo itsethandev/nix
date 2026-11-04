@@ -199,6 +199,29 @@
         "type": "gitlab"
       }
     },
+    "hex": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793778583,
+        "narHash": "sha256-MciFN8K/VrbgdYeUzRo7x6J21FRsE576yJAkEi4T1xs=",
+        "owner": "anomalyco",
+        "repo": "hex",
+        "rev": "3f8aa05af19aa999355dabc35c62375bcfdb71cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anomalyco",
+        "repo": "hex",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -413,6 +436,7 @@
     "root": {
       "inputs": {
         "barnyard": "barnyard",
+        "hex": "hex",
         "home-manager": "home-manager",
         "its-skills": "its-skills",
         "mandelbrust": "mandelbrust",

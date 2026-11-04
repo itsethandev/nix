@@ -80,38 +80,25 @@
     {
       my.dictation.enable = true;
       wayland.windowManager.hyprland.enable = true;
-      services.voxtype.enable = false;
+      programs.hex.enable = false;
+    }
+  ];
+  disabledDictationAutostart = mkHome [
+    {
+      my.dictation.enable = true;
+      wayland.windowManager.hyprland.enable = true;
+      programs.hex.autostart = false;
     }
   ];
   overriddenDictation = mkHome [
     {
       my.dictation.enable = true;
       wayland.windowManager.hyprland.enable = true;
-      services.voxtype.settings.audio.max_duration_secs = 120;
+      programs.hex.settings.paste_with_shift = false;
     }
   ];
-  styledDictation = mkHome [
-    inputs.stylix.homeModules.stylix
-    {
-      my.dictation.enable = true;
-      wayland.windowManager.hyprland.enable = true;
-      stylix = {
-        enable = true;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/espresso.yaml";
-      };
-    }
-  ];
-  dictationColors = styledDictation.config.lib.stylix.colors.withHashtag;
-  expectedDictationColors = pkgs.writeText "dictation-colors.json" (builtins.toJSON {
-    background = dictationColors.base00;
-    foreground = dictationColors.base05;
-    accent = dictationColors.base0D;
-    recording = dictationColors.base08;
-    transcribing = dictationColors.base0A;
-    success = dictationColors.base0B;
-  });
-  dictationSettings = enabledDictation.config.services.voxtype.settings;
-  dictationCommand = lib.getExe enabledDictation.config.services.voxtype.package;
+  dictationSettings = enabledDictation.config.programs.hex;
+  dictationCommand = lib.getExe dictationSettings.package;
   dictationBindings = enabledDictation.config.wayland.windowManager.hyprland.settings;
   enabledNotificationForwarding = mkHome [
     {
@@ -178,34 +165,24 @@ in
   assert !disabledHome.config.programs.fish.enable;
   assert !disabledHome.config.programs.git.enable;
   assert !disabledHome.config.programs.nixvim.enable;
-  assert !disabledHome.config.services.voxtype.enable;
-  assert !(disabledHome.config.xdg.configFile ? "voxtype/config.toml");
+  assert !disabledHome.config.programs.hex.enable;
+  assert !(disabledHome.config.systemd.user.services ? hex);
   assert !(builtins.tryEval invalidDictation.activationPackage.drvPath).success;
   assert !(builtins.tryEval disabledDictationService.activationPackage.drvPath).success;
-  assert overriddenDictation.config.services.voxtype.settings.audio.max_duration_secs == 120;
-  assert enabledDictation.config.services.voxtype.enable;
-  assert dictationSettings.engine == "whisper";
-  assert dictationSettings.whisper.mode == "local";
-  assert !dictationSettings.hotkey.enabled;
-  assert dictationSettings.state_file == "auto";
-  assert dictationSettings.text.spoken_punctuation;
-  assert dictationSettings.vad.enabled;
-  assert dictationSettings.vad.backend == "whisper";
-  assert dictationSettings.output.mode == "paste";
-  assert dictationSettings.output.paste_keys == "shift+insert";
-  assert !dictationSettings.output.auto_submit;
-  assert !dictationSettings.output.smart_auto_submit;
-  assert dictationSettings.output.wait_for_modifier_release;
-  assert dictationSettings.osd.enabled;
-  assert dictationSettings.osd.frontend == "quickshell";
-  assert dictationSettings.osd.position == "bottom-center";
-  assert dictationSettings.osd.palette == "fallback";
-  assert dictationSettings.osd.style == "default";
-  assert styledDictation.config.services.voxtype.settings.osd.palette == "package";
-  assert builtins.elem "SUPER, D, exec, ${dictationCommand} record start" dictationBindings.bind;
-  assert builtins.elem "SUPER_SHIFT, D, exec, ${dictationCommand} record toggle" dictationBindings.bind;
-  assert builtins.elem "SUPER_CTRL, D, exec, ${dictationCommand} record cancel" dictationBindings.bind;
-  assert builtins.elem "SUPER, D, exec, ${dictationCommand} record stop" dictationBindings.bindr;
+  assert !(builtins.tryEval disabledDictationAutostart.activationPackage.drvPath).success;
+  assert !overriddenDictation.config.programs.hex.settings.paste_with_shift;
+  assert dictationSettings.enable;
+  assert dictationSettings.autostart;
+  assert dictationSettings.installModel;
+  assert dictationSettings.model == "parakeet_unified_en";
+  assert dictationSettings.language == "en";
+  assert dictationSettings.settings.paste_with_shift;
+  assert enabledDictation.config.systemd.user.services.hex.Install.WantedBy == ["graphical-session.target"];
+  assert enabledDictation.config.systemd.user.services ? hex-model;
+  assert builtins.elem "SUPER, D, exec, ${dictationCommand} dictation start" dictationBindings.bind;
+  assert builtins.elem "SUPER_SHIFT, D, exec, ${dictationCommand} dictation toggle" dictationBindings.bind;
+  assert builtins.elem "SUPER_CTRL, D, exec, ${dictationCommand} dictation cancel" dictationBindings.bind;
+  assert builtins.elem "SUPER, D, exec, ${dictationCommand} dictation stop" dictationBindings.bindr;
   assert enabledNotificationForwarding.config.home.activation ? initializeNotificationForwardingTopic;
   assert enabledNotificationForwarding.config.home.activation ? reconcileNotificationForwardingHerdrPlugin;
   assert enabledNotificationForwarding.config.systemd.user.services.herdr-notifications-locked.Service.Type == "oneshot";
@@ -213,52 +190,19 @@ in
   assert !overriddenDevelopment.config.programs.nixvim.opts.number;
   assert !overriddenTerminal.config.programs.fish.enable;
     pkgs.runCommand "module-contracts" {} ''
-      test -f "${enabledDictation.config.services.voxtype.environment.VOXTYPE_OSD_QML_PATH}/shell.qml"
-      ${lib.getExe enabledDictation.config.services.voxtype.package} \
-        --config ${enabledDictation.config.xdg.configFile."voxtype/config.toml".source} config get --json > /dev/null
-
-      ${lib.getExe pkgs.python3} - "$TMPDIR/silence.wav" <<'PY'
-      import sys, wave
-      with wave.open(sys.argv[1], "wb") as file:
-          file.setnchannels(1)
-          file.setsampwidth(2)
-          file.setframerate(16000)
-          file.writeframes(b"\0\0" * 16000)
-      PY
-      ${lib.getExe enabledDictation.config.services.voxtype.package} \
-        --config ${enabledDictation.config.xdg.configFile."voxtype/config.toml".source} \
-        transcribe "$TMPDIR/silence.wav" > "$TMPDIR/silence-output"
-      grep -Fx 'No speech detected, skipping transcription.' "$TMPDIR/silence-output"
-      if grep -Eix 'you[.!?]?' "$TMPDIR/silence-output"; then
-        exit 1
-      fi
-
-      mkdir -p "$TMPDIR/dictation/bin" "$TMPDIR/dictation/runtime"
-      cat > "$TMPDIR/dictation/bin/qs" <<'SH'
-      #!${pkgs.bash}/bin/bash
-      set -euo pipefail
-      [[ "$1" == "-p" && -f "$2/shell.qml" ]]
-      ${pkgs.coreutils}/bin/cp "$VOXTYPE_OSD_STYLE_FILE" "$CAPTURED_STYLE"
-      SH
-      chmod +x "$TMPDIR/dictation/bin/qs"
-      PATH="$TMPDIR/dictation/bin:${lib.makeBinPath [pkgs.coreutils pkgs.which]}" \
-      XDG_RUNTIME_DIR="$TMPDIR/dictation/runtime" \
-      CAPTURED_STYLE="$TMPDIR/dictation/style.json" \
-        ${lib.getExe' styledDictation.config.services.voxtype.package "voxtype-osd-quickshell"} \
-          --config ${styledDictation.config.xdg.configFile."voxtype/config.toml".source} \
-          --qml-path ${styledDictation.config.services.voxtype.environment.VOXTYPE_OSD_QML_PATH} \
-          --no-daemonize
-      ${lib.getExe pkgs.python3} - "$TMPDIR/dictation/style.json" ${expectedDictationColors} <<'PY'
-      import json, sys
-      with open(sys.argv[1]) as file:
-          style = json.load(file)
-      with open(sys.argv[2]) as file:
-          expected = json.load(file)
-      assert style["palette"] == "package", style
-      assert style["position"] == "bottom-center", style
-      for role, color in expected.items():
-          assert style["colors"][role] == color, (role, style["colors"][role], color)
-      PY
+      export HEX_APPLICATION_SUPPORT_DIR="$TMPDIR/hex"
+      ${dictationCommand} settings apply ${
+        (pkgs.formats.json {}).generate "hex-settings.json" {
+          "transcription.model" = dictationSettings.model;
+          "transcription.language" = dictationSettings.language;
+          inherit (dictationSettings.settings) paste_with_shift;
+        }
+      }
+      ${lib.getExe pkgs.jq} -e '
+        .transcription.model == "parakeet_unified_en" and
+        .transcription.language == "en" and
+        .paste_with_shift == true
+      ' "$HEX_APPLICATION_SUPPORT_DIR/settings.json"
 
       ${notificationActivation}
       first_topic="$(< ${notificationTopicFile})"

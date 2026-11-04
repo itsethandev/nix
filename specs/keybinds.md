@@ -141,8 +141,8 @@ microphone key.
 
 Dictation inserts text for inspection without submitting it to the active
 application. Holding the dictation binding records until release. The toggle
-variant records until invoked again. Cancel discards the recording or pending
-transcription without inserting text.
+variant records until invoked again. Cancel discards the active recording without
+inserting text; transcription already in progress finishes and inserts its result.
 
 A programmable keyboard may map one physical key's hold and double-tap gestures
 to the hold and toggle bindings. Gesture recognition belongs to the keyboard;
