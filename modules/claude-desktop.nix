@@ -150,5 +150,5 @@ in {
     lib.optionalAttrs (system == "x86_64-linux") {
       packages.claude-desktop = pkgs.claude-desktop;
     };
-  home.turing = {pkgs, ...}: {home.packages = [pkgs.claude-desktop];};
+  flake.modules.homeManager.claude-desktop = {pkgs, ...}: {home.packages = [(pkgs.callPackage package {})];};
 }

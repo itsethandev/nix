@@ -1,5 +1,5 @@
-{lib, ...}: let
-  terminal = {
+{
+  flake.modules.homeManager.terminal = {
     config,
     lib,
     pkgs,
@@ -106,9 +106,7 @@
       };
     };
   };
-in {
-  home = lib.genAttrs ["turing" "newton"] (_: terminal);
-  darwin.newton = {config, ...}: {
+  flake.modules.darwin.terminal = {config, ...}: {
     environment.shells = [config.programs.fish.package];
     programs.fish.enable = true;
   };

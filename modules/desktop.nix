@@ -1,7 +1,13 @@
-{inputs, ...}: {
-  home.turing = {
+{inputs, ...}: let
+  noctaliaFor = pkgs:
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+      patches = (old.patches or []) ++ [../static/noctalia-enter-to-unlock.patch];
+    });
+in {
+  flake.modules.homeManager.desktop = {
     config,
     lib,
+    options,
     pkgs,
     ...
   }: let
@@ -35,7 +41,7 @@
         size = 24;
       };
       programs.noctalia = {
-        package = pkgs.noctalia;
+        package = noctaliaFor pkgs;
         enable = lib.mkDefault true;
         settings = {
           idle.behavior = {
@@ -60,7 +66,7 @@
           };
           osd.kinds.keyboard_layout = lib.mkDefault false;
           shell = {
-            font_family = lib.mkDefault config.stylix.fonts.sansSerif.name;
+            font_family = lib.mkIf (options ? stylix.enable && config.stylix.enable) (lib.mkDefault config.stylix.fonts.sansSerif.name);
             launcher.categories = lib.mkDefault false;
           };
         };
@@ -165,7 +171,7 @@
     };
   };
 
-  nixos.turing = {
+  flake.modules.nixos.desktop = {
     config,
     lib,
     pkgs,
@@ -190,9 +196,7 @@
     ];
     nixpkgs.overlays = [
       (_final: _prev: {
-        noctalia = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
-          patches = (old.patches or []) ++ [../static/noctalia-enter-to-unlock.patch];
-        });
+        noctalia = noctaliaFor pkgs;
       })
     ];
     programs = {
@@ -244,10 +248,6 @@
           };
         };
       };
-    };
-    services.greetd.settings.initial_session = {
-      user = "ethan";
-      command = "${pkgs.uwsm}/bin/uwsm start -e -D Hyprland hyprland.desktop";
     };
     security.rtkit.enable = lib.mkDefault true;
     services = {

@@ -1,5 +1,5 @@
 {
-  home.turing = {
+  flake.modules.homeManager.desktop-files = {
     lib,
     pkgs,
     ...

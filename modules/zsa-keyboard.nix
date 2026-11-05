@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  nixos.turing = {lib, ...}: {
+  flake.modules.nixos.zsa-keyboard = {lib, ...}: {
     imports = [
       inputs.zapp.nixosModules.default
     ];

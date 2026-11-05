@@ -1,5 +1,5 @@
 {
-  nixos.turing = {
+  flake.modules.nixos.phone-camera = {
     config,
     lib,
     pkgs,

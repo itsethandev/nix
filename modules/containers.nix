@@ -1,6 +1,5 @@
 {
-  nixos.turing = {lib, ...}: {
+  flake.modules.nixos.containers = {
     virtualisation.docker.enable = true;
-    users.users.ethan.extraGroups = lib.mkBefore ["docker"];
   };
 }

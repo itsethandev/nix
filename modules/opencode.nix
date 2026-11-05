@@ -1,9 +1,5 @@
-{
-  inputs,
-  lib,
-  ...
-}: {
-  home = lib.genAttrs ["turing" "newton"] (_: {
+{inputs, ...}: {
+  flake.modules.homeManager.opencode = {
     config,
     lib,
     options,
@@ -21,5 +17,5 @@
       skills = inputs.its-skills + "/skills";
       settings.permission.question = lib.mkDefault "deny";
     };
-  });
+  };
 }

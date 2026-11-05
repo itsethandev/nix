@@ -8,7 +8,15 @@
   };
 
   darwin.newton = {
-    imports = [inputs.home-manager.darwinModules.home-manager];
+    imports =
+      [inputs.home-manager.darwinModules.home-manager]
+      ++ (with config.flake.modules.darwin; [
+        appearance
+        ghostty
+        nix
+        terminal
+        window-management
+      ]);
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
@@ -24,6 +32,7 @@
     nixpkgs = {
       config.allowUnfree = true;
       hostPlatform = "aarch64-darwin";
+      overlays = [config.flake.overlays.default];
     };
 
     security.pam.services.sudo_local = {
@@ -67,11 +76,26 @@
     };
   };
   home.newton = {
+    imports = with config.flake.modules.homeManager; [
+      bun
+      desktop-apps
+      development-tools
+      diff-review
+      git
+      neovim
+      opencode
+      pi
+      terminal
+    ];
     home = {
       stateVersion = "24.05";
       username = "ethan";
       homeDirectory = "/Users/ethan";
     };
     programs.home-manager.enable = true;
+    programs.git.settings.user = {
+      email = "newton@itsEthan.dev";
+      name = "Ethan Brady";
+    };
   };
 }

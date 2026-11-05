@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  home.turing = {
+  flake.modules.homeManager.dictation = {
     config,
     lib,
     ...
@@ -32,7 +32,7 @@
 
     wayland.windowManager.hyprland = lib.mkIf config.wayland.windowManager.hyprland.enable {
       configType = lib.mkDefault "lua";
-      settings.bind = [
+      settings.bind = lib.mkOrder 1100 [
         (bind "SUPER + D" "start" {})
         (bind "SUPER + SHIFT + D" "toggle" {})
         (bind "SUPER + CTRL + D" "cancel" {})

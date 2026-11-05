@@ -1,8 +1,4 @@
-{
-  inputs,
-  lib,
-  ...
-}: let
+{inputs, ...}: let
   editor = {
     config,
     lib,
@@ -626,11 +622,15 @@
     };
   };
 in {
-  home = lib.genAttrs ["turing" "newton"] (host: {lib, ...}: {
+  flake.modules.homeManager.neovim = {
+    lib,
+    pkgs,
+    ...
+  }: {
     imports = [editor];
-    xdg.mimeApps = lib.mkIf (host == "turing") {
+    xdg.mimeApps = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       enable = true;
       defaultApplications = lib.genAttrs ["text/plain" "text/markdown" "application/json" "application/x-shellscript"] (_: ["nvim.desktop"]);
     };
-  });
+  };
 }

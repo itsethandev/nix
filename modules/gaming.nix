@@ -1,11 +1,9 @@
 {
-  nixos.turing = {
+  flake.modules.nixos.gaming = {
     lib,
     pkgs,
     ...
   }: {
-    users.users.ethan.extraGroups = lib.mkBefore ["gamemode"];
-
     environment.systemPackages = [
       pkgs.gamescope
       pkgs.usbutils
@@ -38,7 +36,7 @@
       udev.packages = [pkgs.game-devices-udev-rules];
     };
   };
-  home.turing = {
+  flake.modules.homeManager.gaming = {
     config,
     lib,
     pkgs,

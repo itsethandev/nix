@@ -1,5 +1,5 @@
-{lib, ...}: {
-  home = lib.genAttrs ["turing" "newton"] (host: {lib, ...}: {
+{
+  flake.modules.homeManager.git = {lib, ...}: {
     programs = {
       fish.shellAbbrs = {
         ga = "git add";
@@ -35,13 +35,9 @@
             branch = lib.mkDefault true;
             showStash = lib.mkDefault true;
           };
-          user = {
-            email = lib.mkDefault "${host}@itsEthan.dev";
-            name = lib.mkDefault "Ethan Brady";
-          };
         };
       };
       lazygit.enable = true;
     };
-  });
+  };
 }

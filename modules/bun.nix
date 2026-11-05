@@ -1,5 +1,5 @@
-{lib, ...}: {
-  flake.overlays.bun = final: prev: let
+{...}: let
+  overlay = final: prev: let
     version = "1.4.0";
     sources = {
       "aarch64-darwin" = final.fetchurl {
@@ -24,12 +24,15 @@
       or (throw "Unsupported system: ${final.stdenv.hostPlatform.system}");
     };
   };
-  home = lib.genAttrs ["turing" "newton"] (host: {
+in {
+  flake.overlays.bun = overlay;
+  flake.modules.homeManager.bun = {
     config,
+    lib,
     pkgs,
     ...
   }: {
-    home.packages = [pkgs.bun];
-    home.sessionPath = lib.optionals (host == "turing") ["${config.home.homeDirectory}/.cache/.bun/bin"];
-  });
+    home.packages = [(overlay pkgs pkgs).bun];
+    home.sessionPath = lib.optionals pkgs.stdenv.hostPlatform.isLinux ["${config.home.homeDirectory}/.cache/.bun/bin"];
+  };
 }

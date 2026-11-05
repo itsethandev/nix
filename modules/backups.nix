@@ -1,35 +1,23 @@
 {
-  nixos.turing = {
-    services.restic.backups.r2 = {
-      repository = "s3:https://7be572932f308ef922603015d775fdd2.r2.cloudflarestorage.com/backup/turing";
-      environmentFile = "/etc/restic/r2.env";
-      passwordFile = "/etc/restic/password";
-
-      paths = [
-        "/home/ethan/Pictures/Screenshots"
-        "/home/ethan/Documents"
-      ];
-      exclude = [];
-
-      extraOptions = [
-        "s3.bucket-lookup=path"
-      ];
-
-      timerConfig = {
-        OnCalendar = "*-*-* 03:00:00";
-        RandomizedDelaySec = "1h";
-        Persistent = true;
-      };
-
-      pruneOpts = [
-        "--keep-daily 14"
-        "--keep-weekly 8"
-        "--keep-monthly 12"
-        "--keep-yearly 3"
-      ];
-
-      inhibitsSleep = true;
-      initialize = true;
+  flake.modules.nixos.backups = {lib, ...}: {
+    options.services.restic.backups = lib.mkOption {
+      type = lib.types.attrsOf (lib.types.submodule {
+        config = {
+          timerConfig = {
+            OnCalendar = lib.mkDefault "*-*-* 03:00:00";
+            RandomizedDelaySec = lib.mkDefault "1h";
+            Persistent = lib.mkDefault true;
+          };
+          pruneOpts = lib.mkDefault [
+            "--keep-daily 14"
+            "--keep-weekly 8"
+            "--keep-monthly 12"
+            "--keep-yearly 3"
+          ];
+          inhibitsSleep = lib.mkDefault true;
+          initialize = lib.mkDefault true;
+        };
+      });
     };
   };
 }

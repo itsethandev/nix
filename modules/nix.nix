@@ -1,5 +1,5 @@
 {
-  nixos.turing.nix = {
+  flake.modules.nixos.nix.nix = {
     gc = {
       automatic = true;
       dates = "weekly";
@@ -9,5 +9,5 @@
     optimise.automatic = true;
     settings.experimental-features = ["flakes" "nix-command"];
   };
-  darwin.newton.nix.settings.experimental-features = ["nix-command" "flakes"];
+  flake.modules.darwin.nix.nix.settings.experimental-features = ["nix-command" "flakes"];
 }

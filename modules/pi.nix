@@ -1,17 +1,9 @@
-{
-  inputs,
-  lib,
-  ...
-}: {
-  home = lib.genAttrs ["turing" "newton"] (host: {
+{inputs, ...}: {
+  flake.modules.homeManager.pi = {
     lib,
     pkgs,
     ...
   }: {
-    programs.fish = lib.mkIf (host == "turing") {
-      shellAliases.pi = "nix develop ~/.config/nix#pi --command pi";
-      shellAbbrs.pic = "pi -e npm:@agent-sh/computer-use-linux";
-    };
     programs.pi-coding-agent = {
       enable = lib.mkDefault true;
       extraPackages = [pkgs.nodejs];
@@ -46,5 +38,5 @@
       ".pi/agent/AGENTS.md".source = ../static/ai/AGENTS.md;
       ".pi/agent/extensions/codex-speed.ts".source = ../static/ai/pi/extensions/codex-speed.ts;
     };
-  });
+  };
 }

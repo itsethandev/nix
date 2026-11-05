@@ -1,5 +1,5 @@
-{lib, ...}: {
-  home = lib.genAttrs ["turing" "newton"] (_: {
+{
+  flake.modules.homeManager.diff-review = {
     config,
     lib,
     options,
@@ -83,5 +83,5 @@
         };
       })
     ];
-  });
+  };
 }

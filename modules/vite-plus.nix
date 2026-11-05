@@ -64,8 +64,8 @@ in {
     ...
   }:
     lib.optionalAttrs (lib.hasSuffix "-linux" system) {packages.vite-plus = pkgs.vite-plus;};
-  home.turing = {pkgs, ...}: {
-    home.packages = [pkgs.vite-plus];
+  flake.modules.homeManager.vite-plus = {pkgs, ...}: {
+    home.packages = [(pkgs.callPackage package {})];
     xdg.configFile."vite-plus/config.json".text = builtins.toJSON {
       nodeShimMode = "system_first";
       packageManagerShimModes = {

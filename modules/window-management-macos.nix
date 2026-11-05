@@ -1,5 +1,5 @@
 {
-  darwin.newton = {lib, ...}: {
+  flake.modules.darwin.window-management = {lib, ...}: {
     services.aerospace = {
       enable = lib.mkDefault true;
       settings = {

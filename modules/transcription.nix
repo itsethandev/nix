@@ -109,5 +109,5 @@ in {
     ...
   }:
     lib.optionalAttrs (lib.hasSuffix "-linux" system) {packages.vibe = pkgs.vibe;};
-  home.turing = {pkgs, ...}: {home.packages = [pkgs.vibe];};
+  flake.modules.homeManager.transcription = {pkgs, ...}: {home.packages = [(pkgs.callPackage package {})];};
 }

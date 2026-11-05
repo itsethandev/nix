@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  home.turing = {
+  flake.modules.homeManager.browser = {
     config,
     lib,
     options,

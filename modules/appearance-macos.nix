@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  darwin.newton = {pkgs, ...}: {
+  flake.modules.darwin.appearance = {pkgs, ...}: {
     imports = [inputs.stylix.darwinModules.stylix];
     stylix = {
       enable = true;

@@ -64,14 +64,16 @@ in {
     lib.optionalAttrs (lib.hasSuffix "-linux" system) {
       packages.hyprzoom = pkgs.hyprzoom;
     };
-  home.turing = {
+  flake.modules.homeManager.cursor-zoom = {
     config,
     lib,
     pkgs,
     ...
-  }: {
+  }: let
+    hyprzoom = pkgs.callPackage package {};
+  in {
     wayland.windowManager.hyprland.settings.bind = lib.mkIf config.wayland.windowManager.hyprland.enable (lib.mkOrder 1501 (map (binding: {
-        _args = [binding.chord (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} "${lib.getExe pkgs.hyprzoom} ${binding.factor}"})")];
+        _args = [binding.chord (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} "${lib.getExe hyprzoom} ${binding.factor}"})")];
       }) [
         {
           chord = "SUPER + mouse_down";

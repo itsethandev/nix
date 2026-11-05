@@ -1,5 +1,5 @@
 {
-  nixos.turing = {
+  flake.modules.nixos.linux-app-compatibility = {
     config,
     lib,
     pkgs,

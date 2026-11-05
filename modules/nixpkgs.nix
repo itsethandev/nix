@@ -15,7 +15,4 @@
   };
 
   flake.overlays.default = lib.composeManyExtensions (builtins.attrValues (builtins.removeAttrs config.flake.overlays ["default"]));
-
-  nixos.turing = {nixpkgs.overlays = [config.flake.overlays.default];};
-  darwin.newton = {nixpkgs.overlays = [config.flake.overlays.default];};
 }

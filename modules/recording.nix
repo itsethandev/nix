@@ -1,9 +1,9 @@
 {
-  nixos.turing.programs.obs-studio = {
+  flake.modules.nixos.recording.programs.obs-studio = {
     enable = true;
     enableVirtualCamera = true;
   };
-  home.turing = {
+  flake.modules.homeManager.recording = {
     config,
     lib,
     ...

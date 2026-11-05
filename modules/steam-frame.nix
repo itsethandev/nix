@@ -1,13 +1,26 @@
 {
-  nixos.turing = {lib, ...}: let
-    countryCode = "US";
-    adapterMacAddress = "9C:04:B6:88:D5:B9";
+  flake.modules.nixos.steam-frame = {
+    config,
+    lib,
+    ...
+  }: let
+    inherit (config.steamFrame) countryCode adapterMacAddress;
     hotplugRestartRule = ''
       ACTION=="add|remove", SUBSYSTEM=="net", ENV{DEVTYPE}=="wlan", \
       RUN+="/run/current-system/systemd/bin/systemctl try-restart wpa_supplicant.service"
     '';
   in {
     options = {
+      steamFrame = {
+        countryCode = lib.mkOption {
+          type = lib.types.str;
+          description = "Wireless regulatory country code for the adapter's location.";
+        };
+        adapterMacAddress = lib.mkOption {
+          type = lib.types.str;
+          description = "Permanent MAC address of the dedicated Steam Frame adapter.";
+        };
+      };
       # NetworkManager handles device hotplug over D-Bus. The upstream restart rule
       # stops its shared supplicant on dongle insertion and disconnects home Wi-Fi.
       # Fail on upstream changes so this workaround cannot silently become obsolete.
@@ -21,7 +34,7 @@
 
     config = {
       # The world regulatory domain disables the dongle's 6 GHz link. Setting only
-      # wpa_supplicant's country did not set the global kernel domain on turing.
+      # wpa_supplicant's country does not set the global kernel domain.
       boot.extraModprobeConfig = "options cfg80211 ieee80211_regdom=${countryCode}";
 
       hardware.steam-hardware.enable = lib.mkDefault true;

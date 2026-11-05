@@ -1,5 +1,5 @@
 {
-  darwin.newton = {
+  flake.modules.darwin.ghostty = {
     config,
     lib,
     ...
@@ -18,7 +18,7 @@
       }
     ];
   };
-  home.turing = {
+  flake.modules.homeManager.ghostty = {
     config,
     lib,
     pkgs,

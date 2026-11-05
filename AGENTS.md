@@ -6,9 +6,10 @@ Read [README.md](README.md) for repository structure and deployment commands.
 
 - Every Nix file except `flake.nix` is a flake-parts module imported automatically from `modules/`.
 - Organize modules by complete features, including their system, home, package, and integration definitions. Choose ownership from the behavior, not the upstream module class.
-- Contribute lower-level modules through the typed `nixos`, `darwin`, and `home` options. Capture inputs and shared values in the top-level scope instead of passing `specialArgs` or `extraSpecialArgs`.
+- Export portable lower-level modules through `flake.modules.nixos`, `flake.modules.darwin`, and `flake.modules.homeManager`. Keep host selection and deployment-specific values in `modules/hosts/`, composed through the typed `nixos`, `darwin`, and `home` options. Capture inputs and shared values in the top-level scope instead of passing `specialArgs` or `extraSpecialArgs`.
 - Features activate through composition, without repository-specific enable options. Keep optional integrations conditional on the upstream feature being enabled.
-- A feature file must be removable without edits elsewhere or failures in unrelated configuration. Host definitions, hardware definitions, and structural plumbing are exceptions.
+- Apply the deletion test by removing a feature and its explicit references, including caller settings. Unrelated features must still work without further edits. Each exported module must also work independently with its caller-supplied prerequisites and upstream modules, without implicit imports of other repository features.
+- Feature modules must not name deployment hosts or users. Use upstream options for caller settings; declare a small additional interface only when the feature needs inputs that upstream options cannot express. Package dependencies must work without the repository's default overlay.
 - Read relevant Nix before editing. Keep definitions declarative and secrets outside plaintext source control.
 - Use lowercase kebab-case filenames and lower camelCase option names. Format Nix with Alejandra.
 - Keep the existing input pins unless an update is requested.
