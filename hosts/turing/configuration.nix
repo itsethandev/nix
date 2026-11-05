@@ -117,7 +117,6 @@
       pi
       recording
       terminal
-      transcription
       vite-plus
     ];
     home = {
