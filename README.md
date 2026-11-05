@@ -23,7 +23,7 @@ Feature and shell folders contain `module.nix`; host folders contain `configurat
 
 Features own their packages and optional integrations alongside their configuration. Removing a feature and its explicit selections and caller settings leaves unrelated features working without further edits. Exported modules do not select hosts or implicitly import other repository features. Linux-only capabilities still require Linux; modules spanning NixOS and Home Manager expose each implementation separately.
 
-`static/` contains non-secret assets. `packages/` contains npm source manifests and lockfiles consumed by feature modules. There are no maintained specifications or checks.
+Package source files live beside their consuming feature or shell. `static/` contains non-secret assets. There are no maintained specifications or checks.
 
 ## Consume a module
 
