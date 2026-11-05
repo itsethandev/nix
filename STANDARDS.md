@@ -8,6 +8,8 @@ These standards guide how this project is structured, maintained, and edited.
 
 A feature owns its related system configuration, Home Manager configuration, packages, and optional integrations. Follow behavior rather than upstream module classes or arbitrary file-size limits.
 
+Features, hosts, and development shells may span multiple files within their owning folder. Split around coherent roles when it makes behavior easier to find and understand. Prefer role-based filenames, and keep each behavior's settings, dependencies, and shortcuts together.
+
 ### Use the dendritic pattern consistently
 
 Every Nix file except `flake.nix` is an automatically imported flake-parts module. Store lower-level modules as typed option values. File locations organize concepts rather than control evaluation.
