@@ -38,7 +38,7 @@ pkgs.stdenvNoCC.mkDerivation {
         new_zoom=1.0
       fi
 
-      hyprctl keyword cursor:zoom_factor "$new_zoom"
+      hyprctl eval "hl.config({ cursor = { zoom_factor = $new_zoom } })"
     ''} $out/bin/hyprzoom
 
     wrapProgram $out/bin/hyprzoom \

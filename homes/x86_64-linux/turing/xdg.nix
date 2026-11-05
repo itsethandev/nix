@@ -33,7 +33,7 @@ in {
       toggle-projector = {
         name = "Show or Hide Projector";
         comment = "Toggle the projector special workspace";
-        exec = "${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch togglespecialworkspace presentation";
+        exec = "${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch \"hl.dsp.workspace.toggle_special('presentation')\"";
         terminal = false;
         startupNotify = false;
         categories = ["Utility"];
