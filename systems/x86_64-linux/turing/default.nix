@@ -13,7 +13,6 @@ in {
 
   boot = {
     consoleLogLevel = 3;
-    initrd.verbose = false;
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
