@@ -7,7 +7,6 @@
 }: {
   imports = [
     ./hyprland.nix
-    ./notification-forwarding.nix
     ./xdg.nix
     inputs.zen-browser.homeModules.default
   ];
