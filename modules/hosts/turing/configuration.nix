@@ -87,7 +87,7 @@
       extraGroups = ["networkmanager" "gamemode" "docker" "wheel" "input"];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keyFiles = let
-        directory = ../../static/ssh;
+        directory = ../../../static/ssh;
         entries = builtins.readDir directory;
       in
         map (file: "${directory}/${file}") (builtins.filter
