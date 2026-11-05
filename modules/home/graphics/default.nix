@@ -14,9 +14,9 @@
   pasteShortcut = pkgs.writeShellScript "paste-shortcut" ''
     if ${lib.getExe' pkgs.wl-clipboard "wl-paste"} --list-types |
       ${lib.getExe pkgs.gnugrep} -q '^image/'; then
-      ${lib.getExe' pkgs.hyprland "hyprctl"} dispatch sendshortcut CTRL,V,activewindow
+      ${lib.getExe' pkgs.hyprland "hyprctl"} dispatch 'hl.dsp.send_shortcut({ mods = "CTRL", key = "V" })'
     else
-      ${lib.getExe' pkgs.hyprland "hyprctl"} dispatch sendshortcut SHIFT,Insert,activewindow
+      ${lib.getExe' pkgs.hyprland "hyprctl"} dispatch 'hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" })'
     fi
   '';
 in {
