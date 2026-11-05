@@ -11,13 +11,7 @@ in {
       enable = lib.mkDefault true;
       context = ../../../static/ai/AGENTS.md;
       skills = inputs.its-skills + "/skills";
-      settings = {
-        agent = {
-          build.name = lib.mkDefault "write";
-          plan.name = lib.mkDefault "read";
-        };
-        permission.question = lib.mkDefault "deny";
-      };
+      settings.permission.question = lib.mkDefault "deny";
     };
   };
 }
