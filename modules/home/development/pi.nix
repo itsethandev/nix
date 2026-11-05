@@ -30,7 +30,6 @@ in {
         packages = [
           "npm:pi-web-access"
           "npm:@narumitw/pi-stamp"
-          "npm:@calesennett/pi-codex-fast"
         ];
         skills = [
           "${inputs.its-skills}/skills"
@@ -41,6 +40,7 @@ in {
 
     home.file = {
       ".pi/agent/AGENTS.md".source = ../../../static/ai/AGENTS.md;
+      ".pi/agent/extensions/codex-speed.ts".source = ../../../static/ai/pi/extensions/codex-speed.ts;
     };
   };
 }
