@@ -15,9 +15,11 @@ Home Manager is integrated into each system, so system and home generations chan
 
 ## Structure
 
-`flake.nix` declares locked inputs and imports `modules/` automatically with import-tree. Every other Nix file is a flake-parts module implementing one feature across the configurations it applies to. File paths name features; they do not determine module types or import relationships.
+`flake.nix` declares locked inputs and automatically imports every Nix file under `modules/`, `hosts/`, and `shells/` with import-tree. Those files are flake-parts modules. File paths organize features; they do not determine module types or import relationships.
 
-Feature files export portable modules through `modules.nixos`, `modules.darwin`, and `modules.homeManager` in the flake outputs. `modules/hosts/` selects those modules explicitly and supplies host names, users, Git identities, backup destinations, credentials paths, and hardware-specific values. The typed `nixos`, `darwin`, and `home` maps collect deployment definitions and hardware fragments. Shared values and inputs are captured at the flake-parts level rather than threaded through module arguments.
+Features in [`modules/`](modules/) export portable modules through `modules.nixos`, `modules.darwin`, and `modules.homeManager` in the flake outputs. [`hosts/`](hosts/) selects those modules explicitly and supplies host names, users, Git identities, backup destinations, credentials paths, and hardware-specific values. [`shells/`](shells/) defines development environments. Each feature, host, and shell has a short README describing its effects and prerequisites.
+
+Feature and shell folders contain `module.nix`; host folders contain `configuration.nix` and private fragments. `modules/configurations.nix` and `modules/nixpkgs.nix` provide shared plumbing. The typed `nixos`, `darwin`, and `home` maps collect deployment definitions and hardware fragments. Shared values and inputs are captured at the flake-parts level rather than threaded through module arguments.
 
 Features own their packages and optional integrations alongside their configuration. Removing a feature and its explicit selections and caller settings leaves unrelated features working without further edits. Exported modules do not select hosts or implicitly import other repository features. Linux-only capabilities still require Linux; modules spanning NixOS and Home Manager expose each implementation separately.
 

@@ -34,6 +34,10 @@ Integrate with another capability only when it is independently selected. Do not
 
 ## Design and maintenance
 
+### Keep module READMEs minimal and current
+
+Each consumable feature, host, and development shell has a colocated `README.md`. Describe what selecting it enables, installs, or changes, with supported platforms and caller prerequisites where relevant. Include only enough to understand its effects; omit implementation narration, plans, and history. Update the README alongside behavior changes. Structural plumbing and private configuration fragments do not need separate READMEs.
+
 ### Abstractions must earn their place
 
 Introduce an abstraction when it hides meaningful decisions or coordinates coherent behavior—not merely to rename upstream options, shorten a file, or anticipate hypothetical reuse.

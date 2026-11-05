@@ -23,7 +23,7 @@
     buildNpmPackage rec {
       pname = "vite-plus";
       version = "1.3.0";
-      src = ../packages/vite-plus;
+      src = ../../packages/vite-plus;
       npmDepsHash = "sha256-5227zDAG4fRvpq8N2b6HwFak1oWzBLa/EK7IP4LbGus=";
       npmFlags = ["--ignore-scripts"];
       dontNpmBuild = true;

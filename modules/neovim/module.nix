@@ -255,7 +255,7 @@
             programs.nixvim = {
               globals.autoformat = lib.mkDefault true;
               extraFiles = {
-                "lua/project-formatters.lua".source = ../static/neovim/project-formatters.lua;
+                "lua/project-formatters.lua".source = ../../static/neovim/project-formatters.lua;
                 "oxfmt-default.json".text = "{}";
               };
               extraPackagesAfter = with pkgs; [alejandra biome black oxfmt prettier rustfmt];
@@ -338,7 +338,7 @@
             };
           }
           {
-            programs.nixvim.extraFiles."lua/typescript-command.lua".source = ../static/neovim/typescript-command.lua;
+            programs.nixvim.extraFiles."lua/typescript-command.lua".source = ../../static/neovim/typescript-command.lua;
             programs.nixvim.lsp.servers.tsgo.config = {
               root_dir = lib.mkDefault {__raw = ''require("typescript-command")(nil).root_dir'';};
               cmd = lib.mkIf (tsgo.cmd == null) (lib.mkDefault {
@@ -396,7 +396,7 @@
           {
             home.packages = [pkgs.ripgrep];
             programs.nixvim.extraPackages = [pkgs.git];
-            programs.nixvim.extraFiles."lua/files-highlight.lua".source = ../static/neovim/files-highlight.lua;
+            programs.nixvim.extraFiles."lua/files-highlight.lua".source = ../../static/neovim/files-highlight.lua;
             programs.nixvim.plugins.mini = {
               enable = lib.mkDefault true;
               mockDevIcons = lib.mkDefault true;
