@@ -35,4 +35,21 @@ Stop when the request is complete or you need user input or authorization to con
 
 ## Delegate work
 
-When delegation is requested, launch a fresh child using pi --print through bash. Give it a bounded task, working directory, constraints, and expected output. Instruct children not to delegate further.
+When delegation is requested, launch fresh children through bash. Give each a self-contained task, working directory, constraints, verification criteria, and expected output. Instruct children not to delegate further or commit. Keep parallel writers in separate worktrees; otherwise parallelize read-only tasks.
+
+- Foreground: `(cd "$workdir" && pi --print --no-session "$task")`.
+- Background: use the recipe below, then continue independent work in later tool calls.
+- Parallel: launch the background recipe once per independent task, each with its own `run` directory, before collecting results.
+
+```bash
+run=$(mktemp -d /tmp/pi-child.XXXXXX)
+(
+  cd "$workdir" || exit 1
+  nohup bash -c 'pi --print --no-session "$1"; rc=$?; printf "%s\n" "$rc" > "$2/status"' _ "$task" "$run" \
+    >"$run/output.log" 2>&1 </dev/null &
+  echo $! >"$run/pid"
+)
+printf 'Child artifacts: %s\n' "$run"
+```
+
+Retain each artifact path. Read `output.log` for progress; `status` appears on completion and contains the exit code (`0` means success). Poll with bounded waits across later tool calls; `wait` cannot collect children launched by a previous shell. Inspect results and verify artifacts before accepting the work; report failures. To cancel, terminate the recorded supervisor PID and its descendants, not unrelated Pi processes.
