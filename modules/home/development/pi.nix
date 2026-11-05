@@ -6,9 +6,6 @@
   ...
 }: let
   cfg = config.my.development;
-  webAccessExtension = "${config.home.homeDirectory}/.pi/agent/npm/node_modules/pi-web-access/index.ts";
-  webAgent = src:
-    pkgs.replaceVars src {PI_WEB_ACCESS_EXTENSION = webAccessExtension;};
 in {
   config = lib.mkIf cfg.enable {
     programs.pi-coding-agent = {
@@ -33,11 +30,6 @@ in {
         packages = [
           "npm:pi-web-access"
           "npm:@narumitw/pi-stamp"
-          {
-            source = "npm:pi-subagents";
-            prompts = [];
-            skills = ["-skills/council-mode/SKILL.md"];
-          }
           "npm:@calesennett/pi-codex-fast"
         ];
         skills = [
@@ -49,9 +41,6 @@ in {
 
     home.file = {
       ".pi/agent/AGENTS.md".source = ../../../static/ai/AGENTS.md;
-      ".pi/agent/prompts/adopt-project-docs.md".source = ../../../static/ai/prompts/adopt-project-docs.md;
-      ".pi/agent/extensions/subagent/config.json".text = builtins.toJSON {maxSubagentDepth = 2;};
-      ".pi/agent/agents/delegate.md".source = webAgent ../../../static/ai/agents/delegate.md;
     };
   };
 }

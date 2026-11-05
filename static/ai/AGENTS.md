@@ -32,3 +32,7 @@ Write direct, concrete prose. Lead with the answer, action, or decision the read
 Continue the requested work when the next step is clear and authorized. Treat findings and progress updates as checkpoints, not stopping points.
 
 Stop when the request is complete or you need user input or authorization to continue. When blocked, ask for exactly what you need; resolve questions from context or the environment first.
+
+## Delegate work
+
+When delegation is requested, launch a fresh child using pi --print through bash. Give it a bounded task, working directory, constraints, and expected output. Instruct children not to delegate further.
