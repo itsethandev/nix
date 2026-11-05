@@ -56,4 +56,4 @@ nix develop .#js
 nix develop .#pi --command pi
 ```
 
-Repository-specific agent procedures live in [AGENTS.md](AGENTS.md).
+Project design and maintenance rules live in [STANDARDS.md](STANDARDS.md). Repository-specific agent procedures live in [AGENTS.md](AGENTS.md).
