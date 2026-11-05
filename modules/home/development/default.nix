@@ -3,6 +3,7 @@
     ./git.nix
     ./hunk.nix
     ./nixvim
+    ./opencode.nix
     ./pi.nix
   ];
 
