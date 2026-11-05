@@ -7,6 +7,13 @@
 }: let
   cfg = config.my.dictation;
   hex = config.programs.hex.package;
+  bind = chord: action: flags: {
+    _args = [
+      chord
+      (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} "${lib.getExe hex} dictation ${action}"})")
+      flags
+    ];
+  };
 in {
   imports = [inputs.hex.homeManagerModules.hex];
 
@@ -41,14 +48,13 @@ in {
       settings.paste_with_shift = lib.mkDefault true;
     };
 
-    wayland.windowManager.hyprland.settings = {
-      bind = [
-        "SUPER, D, exec, ${lib.getExe hex} dictation start"
-        "SUPER_SHIFT, D, exec, ${lib.getExe hex} dictation toggle"
-        "SUPER_CTRL, D, exec, ${lib.getExe hex} dictation cancel"
-      ];
-      bindr = [
-        "SUPER, D, exec, ${lib.getExe hex} dictation stop"
+    wayland.windowManager.hyprland = {
+      configType = lib.mkDefault "lua";
+      settings.bind = [
+        (bind "SUPER + D" "start" {})
+        (bind "SUPER + SHIFT + D" "toggle" {})
+        (bind "SUPER + CTRL + D" "cancel" {})
+        (bind "SUPER + D" "stop" {release = true;})
       ];
     };
   };

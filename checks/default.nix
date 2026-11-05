@@ -100,6 +100,13 @@
   dictationSettings = enabledDictation.config.programs.hex;
   dictationCommand = lib.getExe dictationSettings.package;
   dictationBindings = enabledDictation.config.wayland.windowManager.hyprland.settings;
+  dictationBinding = chord: action: flags: {
+    _args = [
+      chord
+      (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} "${dictationCommand} dictation ${action}"})")
+      flags
+    ];
+  };
   overriddenDevelopment = mkHome [
     {
       my.development = {
@@ -150,10 +157,10 @@ in
   assert dictationSettings.settings.paste_with_shift;
   assert enabledDictation.config.systemd.user.services.hex.Install.WantedBy == ["graphical-session.target"];
   assert enabledDictation.config.systemd.user.services ? hex-model;
-  assert builtins.elem "SUPER, D, exec, ${dictationCommand} dictation start" dictationBindings.bind;
-  assert builtins.elem "SUPER_SHIFT, D, exec, ${dictationCommand} dictation toggle" dictationBindings.bind;
-  assert builtins.elem "SUPER_CTRL, D, exec, ${dictationCommand} dictation cancel" dictationBindings.bind;
-  assert builtins.elem "SUPER, D, exec, ${dictationCommand} dictation stop" dictationBindings.bindr;
+  assert builtins.elem (dictationBinding "SUPER + D" "start" {}) dictationBindings.bind;
+  assert builtins.elem (dictationBinding "SUPER + SHIFT + D" "toggle" {}) dictationBindings.bind;
+  assert builtins.elem (dictationBinding "SUPER + CTRL + D" "cancel" {}) dictationBindings.bind;
+  assert builtins.elem (dictationBinding "SUPER + D" "stop" {release = true;}) dictationBindings.bind;
   assert !overriddenDevelopment.config.programs.nixvim.opts.number;
   assert !overriddenTerminal.config.programs.fish.enable;
     pkgs.runCommand "module-contracts" {} ''
