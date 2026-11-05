@@ -1,53 +1,23 @@
-# AGENTS.md
+# Agent instructions
 
-## Authority
+Read [README.md](README.md) for repository structure and deployment commands.
 
-- [`specs/constitution.md`](specs/constitution.md) is the canonical owner of repository governance. Apply every relevant principle before changing code or durable documentation.
-- [`README.md`](README.md) owns repository orientation, current outputs, navigation, and deployment commands.
-- [`specs/README.md`](specs/README.md) defines how living specifications are organized and maintained.
-- [`specs/keybinds.md`](specs/keybinds.md) owns the intended Linux global keybinding design.
-- [`specs/ai/spec.md`](specs/ai/spec.md) owns the desired collaboration model for configured AI-development assets.
-- Local READMEs provide brief navigation to those canonical owners rather than duplicating their semantics.
-- Treat current code and descriptive documentation as evidence, not policy. When they conflict with the constitution, surface the conflict instead of preserving accidental behavior.
+## Configuration changes
 
-## Working procedure
-
-- Read relevant `.nix` files before editing them.
-- Keep changes focused and avoid unrelated refactors.
-- Do not create files unless the requested work needs them.
-- Preserve declarative, side-effect-free Nix module definitions.
-- Do not add comments unless they prevent likely misunderstanding or the user requests them.
-- Do not add external API documentation URLs as code comments.
-- Ask when a required host or user choice is unclear. If the current host is relevant and unspecified, run `hostname` rather than asking for that fact.
-
-## Nix conventions
-
-- Format Nix with Alejandra when available and use two-space indentation without tabs.
-- Use lowercase kebab-case for directories and filenames and lower camelCase for multi-word option names.
-- Keep imports explicit and organized by purpose.
-- Use `let ... in` when reuse improves clarity.
-- Keep attribute sets reasonably ordered and use `inherit` when it improves clarity.
-- Avoid unnecessary interpolation and use `with pkgs;` only for short, clear lists.
-- Pass flake inputs through explicit module arguments such as `specialArgs` or `extraSpecialArgs`.
-- For non-trivial modules, separate `options` from `config` and bind the module configuration locally.
-
-Module design, ownership, priorities, assertions, and composition are governed by [PR-002 through PR-006](specs/constitution.md); do not duplicate those rules here.
+- Every Nix file except `flake.nix` is a flake-parts module imported automatically from `modules/`.
+- Organize modules by complete features, including their system, home, package, and integration definitions. Choose ownership from the behavior, not the upstream module class.
+- Contribute lower-level modules through the typed `nixos`, `darwin`, and `home` options. Capture inputs and shared values in the top-level scope instead of passing `specialArgs` or `extraSpecialArgs`.
+- Features activate through composition, without repository-specific enable options. Keep optional integrations conditional on the upstream feature being enabled.
+- A feature file must be removable without edits elsewhere or failures in unrelated configuration. Host definitions, hardware definitions, and structural plumbing are exceptions.
+- Read relevant Nix before editing. Keep definitions declarative and secrets outside plaintext source control.
+- Use lowercase kebab-case filenames and lower camelCase option names. Format Nix with Alejandra.
+- Keep the existing input pins unless an update is requested.
+- This repository has no maintained specs or checks. Do not add them without a request.
 
 ## Verification
 
-Follow [PR-010](specs/constitution.md). At minimum:
+Evaluate affected flake outputs. For refactors, capture a baseline first and compare system and Home Manager derivations, generated files, and activation behavior as needed. Keep temporary verification artifacts outside the repository. Report exactly what was verified and any limitations. Never activate a system or push without an explicit request.
 
-- Format changed Nix files when Alejandra is available.
-- Evaluate or check every affected flake output that the current environment supports.
-- Use targeted behavioral checks when evaluation cannot prove the intended result.
-- Report commands run, results, and any surface that could not be verified.
+## Reusable skills
 
-## Scoped instructions
-
-Before adding, importing, replacing, or experimentally changing a configured AI asset, read `specs/ai/evolution.md`, applicable directives, active trials, and capability specifications.
-
-When changing reusable skill behavior, work in [ItsSkills](https://github.com/ItsEthanDev/its-skills) and follow that repository's instructions. This repository owns the locked source input and Pi discovery configuration, not the skill implementations. Before updating the input, read the applicable AI directives and retained trials; preserve their accepted requirements.
-
-## Sources
-
-These agent procedures are constrained by [PR-001 through PR-010](specs/constitution.md). The constitution remains authoritative if this file disagrees with it.
+Reusable skill implementations belong in [ItsSkills](https://github.com/ItsEthanDev/its-skills). This repository owns the locked source input and discovery configuration, not those implementations.
