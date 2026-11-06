@@ -47,7 +47,6 @@
       keymaps = lib.mkOrder 1002 [
         (keymap "<space>la" "<Cmd>lua vim.lsp.buf.code_action()<CR>" "Actions")
         (keymap "<space>ld" "<Cmd>lua vim.diagnostic.open_float()<CR>" "Diagnostic popup")
-        (keymap "<space>lf" ''<Cmd>lua require("conform").format()<CR>'' "Format")
         (keymap "<space>li" "<Cmd>lua vim.lsp.buf.implementation()<CR>" "Implementation")
         (keymap "<space>lh" "<Cmd>lua vim.lsp.buf.hover()<CR>" "Hover")
         (keymap "<space>ll" "<Cmd>lua vim.lsp.codelens.run()<CR>" "Lens")
@@ -56,7 +55,7 @@
         (keymap "<space>ls" "<Cmd>lua vim.lsp.buf.definition()<CR>" "Source definition")
         (keymap "<space>lt" "<Cmd>lua vim.lsp.buf.type_definition()<CR>" "Type definition")
       ];
-      extraFiles."lua/typescript-command.lua".source = ../../static/neovim/typescript-command.lua;
+      extraFiles."lua/typescript-command.lua".source = ./lua/typescript-command.lua;
       lsp.servers.tsgo.config = {
         root_dir = lib.mkDefault {__raw = ''require("typescript-command")(nil).root_dir'';};
         cmd = lib.mkIf (tsgo.cmd == null) (lib.mkDefault {
@@ -70,6 +69,18 @@
         });
       };
       plugins = {
+        mini.modules.clue.clues = lib.mkDefault {
+          __unkeyed-05-language = {
+            mode = "n";
+            keys = "<Leader>l";
+            desc = "+Language";
+          };
+          __unkeyed-10-visual-language = {
+            mode = "x";
+            keys = "<Leader>l";
+            desc = "+Language";
+          };
+        };
         lsp = {
           enable = lib.mkDefault true;
           servers = {

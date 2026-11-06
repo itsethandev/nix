@@ -1,5 +1,5 @@
 # Diff review
 
-`modules.homeManager.diff-review` installs the Hunk terminal diff viewer.
+`modules.homeManager.diff-review` installs the Hunk terminal diff viewer and manages `~/.config/hunk/config.toml`. It enables line numbers, wrapped lines, and hunk headers, and hides the menu bar and agent notes.
 
-When Stylix is enabled, it replaces `~/.config/hunk/config.toml` with a matching theme, line numbers, wrapped lines, and hunk headers. The menu bar and agent notes are hidden.
+When Stylix is enabled, it also supplies a matching custom theme. Without Stylix, Hunk uses its default theme.

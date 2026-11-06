@@ -20,65 +20,31 @@
         };
         mini.modules = {
           clue = {
-            clues = lib.mkDefault [
-              {
-                mode = "n";
-                keys = "<Leader>b";
-                desc = "+Buffer";
-              }
-              {
-                mode = "n";
-                keys = "<Leader>e";
-                desc = "+Explore/Edit";
-              }
-              {
-                mode = "n";
-                keys = "<Leader>f";
-                desc = "+Find";
-              }
-              {
-                mode = "n";
-                keys = "<Leader>g";
-                desc = "+Git";
-              }
-              {
-                mode = "n";
-                keys = "<Leader>l";
-                desc = "+Language";
-              }
-              {
+            # Nixvim's unkeyed attrs merge across role files and render as Lua list entries.
+            clues = lib.mkDefault {
+              __unkeyed-06-map = {
                 mode = "n";
                 keys = "<Leader>m";
                 desc = "+Map";
-              }
-              {
+              };
+              __unkeyed-07-ui = {
                 mode = "n";
                 keys = "<Leader>u";
                 desc = "+UI";
-              }
-              {
+              };
+              __unkeyed-08-zettelkasten = {
                 mode = "n";
                 keys = "<Leader>z";
                 desc = "+Zettelkasten";
-              }
-              {
-                mode = "x";
-                keys = "<Leader>g";
-                desc = "+Git";
-              }
-              {
-                mode = "x";
-                keys = "<Leader>l";
-                desc = "+Language";
-              }
-              {__raw = "require('mini.clue').gen_clues.builtin_completion()";}
-              {__raw = "require('mini.clue').gen_clues.g()";}
-              {__raw = "require('mini.clue').gen_clues.marks()";}
-              {__raw = "require('mini.clue').gen_clues.registers()";}
-              {__raw = "require('mini.clue').gen_clues.square_brackets()";}
-              {__raw = "require('mini.clue').gen_clues.windows({ submode_resize = true })";}
-              {__raw = "require('mini.clue').gen_clues.z()";}
-            ];
+              };
+              __unkeyed-11-completion.__raw = "require('mini.clue').gen_clues.builtin_completion()";
+              __unkeyed-12-g.__raw = "require('mini.clue').gen_clues.g()";
+              __unkeyed-13-marks.__raw = "require('mini.clue').gen_clues.marks()";
+              __unkeyed-14-registers.__raw = "require('mini.clue').gen_clues.registers()";
+              __unkeyed-15-brackets.__raw = "require('mini.clue').gen_clues.square_brackets()";
+              __unkeyed-16-windows.__raw = "require('mini.clue').gen_clues.windows({ submode_resize = true })";
+              __unkeyed-17-z.__raw = "require('mini.clue').gen_clues.z()";
+            };
             triggers = lib.mkDefault [
               {
                 mode = ["n" "x"];

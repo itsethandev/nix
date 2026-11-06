@@ -101,13 +101,14 @@
       browser
       bun
       claude-desktop
+      color-picker
       cursor-zoom
       desktop-apps
-      desktop-files
       desktop
       development-tools
       dictation
       diff-review
+      file-manager
       gaming
       ghostty
       git

@@ -4,7 +4,6 @@
     pkgs,
     ...
   }: let
-    ipc = "noctalia msg";
     bind = chord: dispatcher: {
       _args = [chord (lib.generators.mkLuaInline dispatcher)];
     };
@@ -65,17 +64,6 @@
             (bind "SUPER + SHIFT + L" ''hl.dsp.window.move({ direction = "right" })'')
             (bind "SUPER + Tab" ''hl.dsp.focus({ monitor = "+1" })'')
             (bind "SUPER + SHIFT + Tab" ''hl.dsp.window.move({ monitor = "+1", follow = false })'')
-            (exec "SUPER + space" "${ipc} panel-toggle launcher")
-            (exec "SUPER + CTRL + V" "${ipc} panel-toggle clipboard")
-            (exec "SUPER + CTRL + space" "${ipc} panel-toggle control-center")
-            (exec "SUPER + P" "${ipc} screenshot-fullscreen")
-            (exec "SUPER + SHIFT + P" "${ipc} screenshot-region")
-            (exec "SUPER + M" "${ipc} mic-mute")
-            (exec "XF86AudioRaiseVolume" "${ipc} volume-up")
-            (exec "XF86AudioLowerVolume" "${ipc} volume-down")
-            (exec "XF86AudioMute" "${ipc} volume-mute")
-            (exec "XF86MonBrightnessUp" "${ipc} brightness-up")
-            (exec "XF86MonBrightnessDown" "${ipc} brightness-down")
             {_args = ["SUPER + mouse:272" (lib.generators.mkLuaInline "hl.dsp.window.drag()") {mouse = true;}];}
             {_args = ["SUPER + mouse:273" (lib.generators.mkLuaInline "hl.dsp.window.resize()") {mouse = true;}];}
           ]

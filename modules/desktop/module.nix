@@ -11,7 +11,6 @@ in {
   flake.modules.nixos.desktop = {pkgs, ...}: {
     imports = [
       inputs.noctalia.nixosModules.default
-      inputs.noctalia-greeter.nixosModules.default
       inputs.stylix.nixosModules.stylix
     ];
     nixpkgs.overlays = [

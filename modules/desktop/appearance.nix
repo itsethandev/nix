@@ -35,10 +35,6 @@
         --quiet
     '';
   in {
-    programs.noctalia-greeter.settings.appearance.wallpaper = {
-      path = "${wallpaper}";
-      fill_mode = "crop";
-    };
     stylix = {
       enable = true;
       polarity = "dark";

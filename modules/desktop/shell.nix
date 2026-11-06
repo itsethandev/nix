@@ -1,5 +1,9 @@
 {
-  flake.modules.homeManager.desktop = {lib, ...}: {
+  flake.modules.homeManager.desktop = {lib, ...}: let
+    exec = chord: command: {
+      _args = [chord (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} "noctalia msg ${command}"})")];
+    };
+  in {
     programs.noctalia = {
       enable = lib.mkDefault true;
       settings = {
@@ -28,6 +32,19 @@
       };
     };
     wayland.windowManager.hyprland.settings = {
+      bind = [
+        (exec "SUPER + space" "panel-toggle launcher")
+        (exec "SUPER + CTRL + V" "panel-toggle clipboard")
+        (exec "SUPER + CTRL + space" "panel-toggle control-center")
+        (exec "SUPER + P" "screenshot-fullscreen")
+        (exec "SUPER + SHIFT + P" "screenshot-region")
+        (exec "SUPER + M" "mic-mute")
+        (exec "XF86AudioRaiseVolume" "volume-up")
+        (exec "XF86AudioLowerVolume" "volume-down")
+        (exec "XF86AudioMute" "volume-mute")
+        (exec "XF86MonBrightnessUp" "brightness-up")
+        (exec "XF86MonBrightnessDown" "brightness-down")
+      ];
       on = [
         {
           _args = [

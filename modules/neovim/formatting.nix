@@ -11,11 +11,17 @@
     programs.nixvim = {
       globals.autoformat = lib.mkDefault true;
       extraFiles = {
-        "lua/project-formatters.lua".source = ../../static/neovim/project-formatters.lua;
+        "lua/project-formatters.lua".source = ./lua/project-formatters.lua;
         "oxfmt-default.json".text = "{}";
       };
       extraPackagesAfter = with pkgs; [alejandra biome black oxfmt prettier rustfmt];
       keymaps = lib.mkOrder 1004 [
+        {
+          key = "<space>lf";
+          action = ''<Cmd>lua require("conform").format()<CR>'';
+          mode = ["n"];
+          options.desc = "Format";
+        }
         {
           key = "<leader>uf";
           mode = "n";

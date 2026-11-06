@@ -13,7 +13,7 @@
     home.packages = [pkgs.ripgrep];
     programs.nixvim = {
       extraPackages = [pkgs.git];
-      extraFiles."lua/files-highlight.lua".source = ../../static/neovim/files-highlight.lua;
+      extraFiles."lua/files-highlight.lua".source = ./lua/files-highlight.lua;
       keymaps = lib.mkOrder 1001 [
         (keymap "<space>bd" "<Cmd>lua MiniBufremove.delete()<CR>" "Delete")
         (keymap "<space>bD" "<Cmd>lua MiniBufremove.delete(0, true)<CR>" "Delete!")
@@ -53,6 +53,33 @@
         ((keymap "<space>gs" "<Cmd>lua MiniGit.show_at_cursor()<CR>" "Show at selection") // {mode = ["x"];})
       ];
       plugins.mini.modules = {
+        clue.clues = lib.mkDefault {
+          __unkeyed-01-buffer = {
+            mode = "n";
+            keys = "<Leader>b";
+            desc = "+Buffer";
+          };
+          __unkeyed-02-explore = {
+            mode = "n";
+            keys = "<Leader>e";
+            desc = "+Explore/Edit";
+          };
+          __unkeyed-03-find = {
+            mode = "n";
+            keys = "<Leader>f";
+            desc = "+Find";
+          };
+          __unkeyed-04-git = {
+            mode = "n";
+            keys = "<Leader>g";
+            desc = "+Git";
+          };
+          __unkeyed-09-visual-git = {
+            mode = "x";
+            keys = "<Leader>g";
+            desc = "+Git";
+          };
+        };
         bracketed.enable = lib.mkDefault true;
         bufremove.enable = lib.mkDefault true;
         diff.enable = lib.mkDefault true;
