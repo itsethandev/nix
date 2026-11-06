@@ -1,4 +1,4 @@
-{
+{inputs, ...}: {
   flake.modules.nixos.gaming = {
     lib,
     pkgs,
@@ -88,7 +88,7 @@
         (lib.mkOrder 1504 gamingWindowRules)
       ];
     };
-    home.packages = [pkgs.archipelago];
+    home.packages = [pkgs.archipelago inputs.barnyard.packages.${pkgs.stdenv.hostPlatform.system}.barnyard];
     programs.mangohud = {
       enable = true;
       enableSessionWide = true;

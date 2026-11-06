@@ -1,6 +1,5 @@
 {
   flake.modules.homeManager.terminal = {
-    config,
     lib,
     pkgs,
     ...
@@ -18,8 +17,6 @@
       tree = "eza -T";
     };
   in {
-    home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [pkgs.libnotify];
-
     programs = {
       bat.enable = lib.mkDefault true;
 
@@ -67,20 +64,6 @@
           "-i"
           "-e"
         ];
-      };
-
-      herdr = {
-        enable = lib.mkDefault true;
-        settings = {
-          keys = {
-            navigate_workspace_down = lib.mkDefault "j";
-            navigate_workspace_up = lib.mkDefault "k";
-          };
-          onboarding = lib.mkDefault false;
-          terminal.default_shell = lib.mkDefault (lib.getExe pkgs.fish);
-          theme.name = lib.mkDefault "terminal";
-          ui.toast.delivery = lib.mkDefault "system";
-        };
       };
 
       starship = {

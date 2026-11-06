@@ -9,7 +9,7 @@
     colors = config.lib.stylix.colors.withHashtag;
     hasStylix = options ? stylix.enable && config.stylix.enable;
   in {
-    home.packages = [pkgs.hunk];
+    home.packages = [pkgs.hunk] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [pkgs.tuicr];
     xdg.configFile."hunk/config.toml" = {
       force = true;
       text =

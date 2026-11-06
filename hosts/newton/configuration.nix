@@ -78,13 +78,16 @@
   home.newton = {
     imports = with config.flake.modules.homeManager; [
       bun
-      desktop-apps
       development-tools
       diff-review
+      discord
       git
+      herdr
+      javascript-toolchain
       neovim
       opencode
       pi
+      rust-toolchain
       terminal
     ];
     home = {

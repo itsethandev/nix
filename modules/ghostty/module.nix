@@ -64,44 +64,5 @@
         }
       ];
     };
-
-    systemd.user.services.herdr = lib.mkIf config.programs.herdr.enable {
-      Unit = {
-        Description = "Herdr graphical-session server";
-        After = ["graphical-session.target"];
-        PartOf = ["graphical-session.target"];
-      };
-      Service = {
-        Type = "exec";
-        ExecStart = let
-          herdr = lib.getExe config.programs.herdr.package;
-        in
-          lib.getExe (pkgs.writeShellApplication {
-            name = "herdr-session-server";
-            text = ''
-              server_running() {
-                ${herdr} status server --json | ${lib.getExe pkgs.jq} -e '.running == true' >/dev/null
-              }
-
-              if server_running; then
-                exit 0
-              fi
-
-              ${herdr} server || {
-                status=$?
-                if server_running; then
-                  exit 0
-                fi
-                exit "$status"
-              }
-            '';
-          });
-        WorkingDirectory = config.home.homeDirectory;
-        Restart = "on-failure";
-        RestartSec = 3;
-        Slice = "app-graphical.slice";
-      };
-      Install.WantedBy = ["graphical-session.target"];
-    };
   };
 }

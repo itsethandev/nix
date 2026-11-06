@@ -21,6 +21,7 @@
         file-sharing
         gaming
         linux-app-compatibility
+        localsend
         networking
         nix
         password-manager
@@ -28,6 +29,7 @@
         recording
         ssh
         steam-frame
+        tailscale
         zsa-keyboard
       ]);
     home-manager = {
@@ -96,31 +98,39 @@
     };
   };
 
-  home.turing = {
+  home.turing = {pkgs, ...}: {
     imports = with config.flake.modules.homeManager; [
       browser
       bun
       claude-desktop
+      coding-tools
       color-picker
       cursor-zoom
-      desktop-apps
       desktop
       development-tools
       dictation
       diff-review
+      direnv
+      discord
       file-manager
+      file-viewers
       gaming
       ghostty
       git
+      herdr
+      javascript-toolchain
       music
       neovim
       opencode
       pi
       recording
+      rust-toolchain
+      system-monitor
       terminal
       vite-plus
     ];
     home = {
+      packages = with pkgs; [gcc javaPackages.compiler.temurin-bin.jre-25 pkg-config];
       username = "ethan";
       homeDirectory = "/home/ethan";
       stateVersion = "25.11";
