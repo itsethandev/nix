@@ -122,6 +122,7 @@
       music
       neovim
       opencode
+      ovis
       pi
       recording
       rust-toolchain
