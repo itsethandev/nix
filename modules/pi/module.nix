@@ -36,7 +36,7 @@
 
     home.file = {
       ".pi/agent/AGENTS.md".source = ../../static/ai/AGENTS.md;
-      ".pi/agent/extensions/codex-speed.ts".source = ../../static/ai/pi/extensions/codex-speed.ts;
+      ".pi/agent/extensions/codex-speed.ts".source = ./extensions/codex-speed.ts;
     };
   };
 }

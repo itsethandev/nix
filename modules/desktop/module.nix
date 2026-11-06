@@ -1,7 +1,7 @@
 {inputs, ...}: let
   noctaliaFor = pkgs:
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
-      patches = (old.patches or []) ++ [../../static/noctalia-enter-to-unlock.patch];
+      patches = (old.patches or []) ++ [./noctalia-enter-to-unlock.patch];
     });
 in {
   flake.modules.homeManager.desktop = {pkgs, ...}: {
