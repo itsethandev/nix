@@ -36,6 +36,10 @@
 
     home.file = {
       ".pi/agent/AGENTS.md".source = ../../static/ai/AGENTS.md;
+      ".pi/agent/prompts" = {
+        source = ../../static/ai/prompts;
+        recursive = true;
+      };
       ".pi/agent/extensions/codex-speed.ts".source = ./extensions/codex-speed.ts;
     };
   };

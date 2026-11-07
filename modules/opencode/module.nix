@@ -14,6 +14,7 @@
         theme.name = lib.mkIf (options ? stylix.enable && config.stylix.enable) (lib.mkDefault "stylix");
       };
       context = ../../static/ai/AGENTS.md;
+      commands = ../../static/ai/prompts;
       skills = inputs.its-skills + "/skills";
       settings.permission.question = lib.mkDefault "deny";
     };
