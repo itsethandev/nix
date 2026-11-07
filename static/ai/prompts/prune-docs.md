@@ -9,6 +9,6 @@ Keep `README.md` lightweight: introduce the project, briefly explain what it doe
 
 Describe the current system coherently rather than layering amendments onto old descriptions. Keep human-facing documentation understandable without agent instructions.
 
-Perform straightforward cleanup without per-file approval. Ask when meaning or continued relevance is genuinely unclear. Leave source code, tests, historical records, and reference material unchanged. Report opportunities to replace documentation with better code or tests separately rather than expanding into a refactor.
+Perform straightforward cleanup without per-file approval. Ask when meaning or continued relevance is genuinely unclear. Leave `src/modules/README.md`, source code, tests, historical records, and reference material unchanged. Report opportunities to replace documentation with better code or tests separately rather than expanding into a refactor.
 
 Verify that retained guidance matches the project, moved references and local links resolve, and documentation is reachable through the README and agent pointers. Summarize the cleanup and any unresolved questions briefly.
