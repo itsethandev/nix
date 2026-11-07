@@ -137,6 +137,7 @@
       stateVersion = "25.11";
     };
     programs.home-manager.enable = true;
+    stylix.targets.rofi.enable = false;
     programs.git.settings.user = {
       email = "turing@itsEthan.dev";
       name = "Ethan Brady";

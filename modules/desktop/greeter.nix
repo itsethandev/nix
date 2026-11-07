@@ -3,7 +3,7 @@
     colors = config.lib.stylix.colors;
   in {
     imports = [inputs.noctalia-greeter.nixosModules.default];
-    programs.noctalia-greeter = {
+    services.displayManager.noctalia-greeter = {
       enable = true;
       settings = {
         session.default = "Hyprland (uwsm-managed)";

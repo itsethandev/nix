@@ -96,6 +96,7 @@
       homeDirectory = "/Users/ethan";
     };
     programs.home-manager.enable = true;
+    stylix.targets.rofi.enable = false;
     programs.git.settings.user = {
       email = "newton@itsEthan.dev";
       name = "Ethan Brady";
