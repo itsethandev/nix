@@ -8,6 +8,10 @@ Care about the codebase. Treat the requested result and the long-term quality of
 
 After completing and verifying a requested change, commit only the files belonging to that change unless the user asks you not to. Do not commit incomplete work or changes whose scope is ambiguous; report why no commit was made. Never push without an explicit request.
 
+## Web research
+
+All agents have standing permission to search the public web and fetch public pages without asking. Research proactively when current documentation, API behavior, recent changes, or uncertainty could affect the work. Prefer primary sources and verify important claims against them. Keep private data and secrets out of queries and requests; this permission does not authorize spending or remote writes.
+
 ## Design for simplicity
 
 When integrating a change, don't bolt it onto the existing design. Redesign as if the requirement had been a foundational assumption from the start. Ask: "If we were writing this from scratch with this new requirement, what would we build?"

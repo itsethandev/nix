@@ -18,7 +18,23 @@
       context = ../../static/ai/AGENTS.md;
       commands = ../../static/ai/prompts;
       skills = inputs.its-skills + "/skills";
-      settings.permission.question = lib.mkDefault "deny";
+      settings.permissions = lib.mkDefault [
+        {
+          action = "question";
+          resource = "*";
+          effect = "deny";
+        }
+        {
+          action = "websearch";
+          resource = "*";
+          effect = "allow";
+        }
+        {
+          action = "webfetch";
+          resource = "*";
+          effect = "allow";
+        }
+      ];
     };
   };
 }
