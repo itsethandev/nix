@@ -1,11 +1,11 @@
 ---
-description: Set up and verify branch-based staging deployments without disrupting production
+description: Set up or audit branch-based staging deployments without disrupting production
 ---
-Set up a production-like staging environment for this project. Changes to `staging` should deploy automatically to staging; changes to `main` should deploy automatically to production. Preserve existing production behavior and keep `main` as GitHub's default branch.
+Set up or audit this project's production-like staging environment. If staging already exists, verify that it works and follows the conventions below, then correct gaps rather than recreate working resources. Changes to `staging` should deploy automatically to staging; changes to `main` should deploy automatically to production. Preserve existing production behavior and keep `main` as GitHub's default branch.
 
 ## Inspect and confirm
 
-Inspect the repository, deployment configuration, and existing environments. Identify the deployment owners, services, credentials, and automation affected by this change. Briefly confirm these decisions with the user before implementation:
+Inspect the repository, deployment configuration, and existing environments. Identify what already complies, what is broken or unverified, and what needs changing. Reuse working resources and credentials; leave compliant configuration unchanged. Identify the deployment owners, services, credentials, and automation affected by any changes. Briefly confirm these decisions with the user before implementation:
 
 - For Convex, whether Vercel or GitHub Actions should deploy it. Recommend Vercel when the Convex backend belongs to the Vercel application and is included in its deployment source; otherwise recommend GitHub Actions.
 - For each external service, whether staging should use a sandbox, separate real credentials, or shared production credentials. Prefer sandbox instances where available; read-only integrations may share production access, while paid services such as OpenRouter may warrant separate, limited credentials. Use WorkOS's staging environment when applicable.
@@ -48,6 +48,6 @@ Avoid production impact. If any required change would affect live production, ex
 
 ## Verify and hand off
 
-Run relevant project checks and complete an actual staging deployment. Verify branch targeting, frontend/backend connections, and configured integrations without modifying production data. Distinguish verified behavior from configuration-only checks.
+Run relevant project checks and verify an actual staging deployment, deploying changes when needed. Verify branch targeting, frontend/backend connections, and configured integrations without modifying production data. Distinguish verified behavior from configuration-only checks.
 
-Report the staging URL, what was verified, and any blockers. For credentials or manual steps you cannot complete, state exactly what the user must obtain, where it must be configured, and how to finish deployment. Mark incomplete deployment or verification explicitly.
+Report the staging URL, what already complied, what changed, what was verified, and any blockers. For credentials or manual steps you cannot complete, state exactly what the user must obtain, where it must be configured, and how to finish deployment. Mark incomplete deployment or verification explicitly.
