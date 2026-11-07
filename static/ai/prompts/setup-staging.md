@@ -48,7 +48,7 @@ Avoid production impact. If any required change would affect live production, ex
 
 ## Verify and hand off
 
-Create or rewrite `docs/deployment.md` with very brief, direct instructions for the resulting deployment setup: the branch/PR flow, what deploys each environment, and any required configuration or manual steps. Describe the current setup, not the migration history, and omit secret values.
+Create or rewrite `docs/deployment.md` with a very brief, direct explanation of how deployment is set up: the branch/PR flow, what triggers and runs each environment's deployment, and how services and environment configuration connect. Describe the current setup, not setup instructions or migration history, and omit secret values.
 
 Run relevant project checks and verify an actual staging deployment, deploying changes when needed. Verify branch targeting, frontend/backend connections, and configured integrations without modifying production data. Distinguish verified behavior from configuration-only checks.
 
