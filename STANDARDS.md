@@ -14,6 +14,14 @@ Features, hosts, and development shells may span multiple files within their own
 
 Every Nix file except `flake.nix` is an automatically imported flake-parts module. Store lower-level modules as typed option values. File locations organize concepts rather than control evaluation.
 
+Consumable folders have these output contracts:
+
+- Features export at least one module through `flake.modules.nixos`, `flake.modules.darwin`, or `flake.modules.homeManager`. They may also define feature-owned overlays and `perSystem.packages`, but not deployments or deployment fragments.
+- Hosts export at least one `flake.nixosConfigurations` or `flake.darwinConfigurations` deployment. Their typed `nixos` and `darwin` fragments match their respective deployment names; `home` fragments belong to deployments in the same folder. Hosts do not publish reusable features, packages, overlays, or shells.
+- Development shells define at least one `perSystem.devShells` output across the configured systems, without publishing features, packages, overlays, or deployments.
+
+Check these contracts across all Nix files in the owning folder. Export names need not match folder names. Root-level files in `modules/` provide shared structural plumbing rather than consumable features.
+
 ### Separate capabilities from deployment choices
 
 Reusable features must not name hosts, users, or machine-specific resources. Host directories select capabilities and supply identities, destinations, access rules, and hardware settings.
@@ -61,6 +69,10 @@ Derive managed state from repository content and locked inputs. Avoid ambient ma
 ### Verify claims directly
 
 Format changed Nix and evaluate affected outputs. Use targeted builds or behavioral verification where evaluation is insufficient. State platform limitations and unverified behavior explicitly.
+
+### Test architectural contracts, not configuration choices
+
+Repository tests enforce documented structural contracts: module interfaces, output namespaces and types, ownership boundaries, and mechanically checkable conventions. Discover features, hosts, and shells rather than maintaining expected inventories. A valid change to selected capabilities, packages, identities, hardware, or settings must not require changing test expectations unless an architectural contract changes. Use fixtures only to exercise a contract, with the minimum configuration needed. Keep checks deterministic.
 
 ### Keep conventions simple
 

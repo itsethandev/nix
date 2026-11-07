@@ -6,7 +6,6 @@
   imports = [inputs.flake-parts.flakeModules.modules];
   disabledModules = map (name: inputs.flake-parts + "/modules/${name}.nix") [
     "apps"
-    "checks"
     "formatter"
     "legacyPackages"
     "nixosModules"

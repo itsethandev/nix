@@ -6,7 +6,7 @@ Read [STANDARDS.md](STANDARDS.md) before structuring, maintaining, or editing th
 
 - Read relevant Nix before editing.
 - Keep the existing input pins unless an update is requested.
-- This repository has no maintained specs or checks. Do not add them without a request.
+- This repository has no maintained specs. Do not add them without a request.
 
 ## Verification
 

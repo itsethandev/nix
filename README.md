@@ -23,7 +23,7 @@ Feature and shell folders contain `module.nix`; host folders contain `configurat
 
 Features own their packages and optional integrations alongside their configuration. Removing a feature and its explicit selections and caller settings leaves unrelated features working without further edits. Exported modules do not select hosts or implicitly import other repository features. Linux-only capabilities still require Linux; modules spanning NixOS and Home Manager expose each implementation separately.
 
-Package source files live beside their consuming feature or shell. `static/` contains non-secret assets. There are no maintained specifications or checks.
+Package source files live beside their consuming feature or shell. `static/` contains non-secret assets.
 
 ## Consume a module
 
@@ -50,12 +50,37 @@ Home Manager consumers can import modules such as `inputs.ethan.modules.homeMana
 - `overlays`: package overrides and their default composition.
 - `packages.<system>`: Linux packages maintained here.
 - `devShells.<system>`: `js`, `lua`, `pi`, `python`, and `rust` development environments.
+- `checks.<system>`: architectural contracts and Nix formatting.
 
 For example:
 
 ```sh
 nix develop .#js
 nix develop .#pi --command pi
+```
+
+## Checks
+
+Run the repository checks with:
+
+```sh
+nix flake check
+```
+
+The checks in `modules/checks.nix` discover consumable folders and evaluate each folder's Nix files together against its allowed output contract:
+
+- `architecture-features`: typed module exports in supported classes, with optional feature-owned packages and overlays; no deployments or deployment fragments.
+- `architecture-hosts`: deployment outputs with matching typed system fragments and no orphaned home fragments; no reusable feature or shell exports.
+- `architecture-shells`: development-shell derivations, without feature or deployment outputs.
+- `architecture-layout`: documented entrypoints and colocated READMEs, lowercase kebab-case configuration paths, and automatic import coverage.
+- `formatting`: Alejandra formatting for configuration Nix files.
+
+Package and shell derivations are evaluated for all configured systems, but their dependencies are not built and shell hooks are not executed. Host checks inspect deployment interfaces, not host settings or activation behavior. Exported feature bodies remain deferred; these checks do not prove independent consumption or runtime behavior. Package source files and assets are outside configuration naming checks unless they contain Nix configuration files.
+
+To also ask Nix to validate every system's flake outputs without building checks:
+
+```sh
+nix flake check --all-systems --no-build
 ```
 
 Project design and maintenance rules live in [STANDARDS.md](STANDARDS.md). Repository-specific agent procedures live in [AGENTS.md](AGENTS.md).
