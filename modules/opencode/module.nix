@@ -18,6 +18,7 @@
       context = ../../static/ai/AGENTS.md;
       commands = ../../static/ai/prompts;
       skills = inputs.its-skills + "/skills";
+      settings.plugins = ["opencode-mobile-notifications"];
       settings.permissions = lib.mkDefault [
         {
           action = "question";
