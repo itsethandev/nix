@@ -37,3 +37,14 @@ Adding `Alt` changes how the same action works; it never assigns an unrelated ac
 | `Super + Right Click` | Resize the window |
 | `Super + Middle Click` | Reset zoom |
 | `Super + Scroll` | Zoom |
+
+## System controls
+
+| Hotkey | Action |
+| --- | --- |
+| `Super + Ctrl + Space` | Toggle the menu |
+| `Super + Ctrl + A` | Open the audio panel |
+| `Super + Ctrl + B` | Open the Bluetooth panel |
+| `Super + Ctrl + M` | Open the display panel |
+| `Super + Ctrl + N` | Open the network panel |
+| `Super + Ctrl + P` | Open the power panel |
