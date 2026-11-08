@@ -48,8 +48,6 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 | `Super + V` | Paste |
 | `Super + X` | Cut |
 | `Super + A` | Select all |
-| `Super + Z` | Undo |
-| `Super + Shift + Z` | Redo |
 
 ## System panels
 

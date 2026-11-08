@@ -48,8 +48,6 @@
             (exec "SUPER + V" "${pasteShortcut}")
             (bind "SUPER + X" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "X" })'')
             (bind "SUPER + A" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "A" })'')
-            (bind "SUPER + Z" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "Z" })'')
-            (bind "SUPER + SHIFT + Z" ''hl.dsp.send_shortcut({ mods = "CTRL + SHIFT", key = "Z" })'')
             (bind "SUPER + W" "hl.dsp.window.close()")
             (bind "SUPER + CTRL + W" "hl.dsp.window.kill()")
             (bind "SUPER + F" ''hl.dsp.window.fullscreen({ action = "toggle", mode = "fullscreen" })'')
