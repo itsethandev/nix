@@ -61,7 +61,6 @@
     gamingWindowPatterns;
   in {
     wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {
-      bind = lib.mkOrder 1502 [{_args = ["SUPER + G" (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 5 })")];}];
       window_rule = lib.mkMerge [
         (lib.mkOrder 1502 [
           {

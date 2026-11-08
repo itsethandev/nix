@@ -33,10 +33,9 @@
     wayland.windowManager.hyprland = lib.mkIf config.wayland.windowManager.hyprland.enable {
       configType = lib.mkDefault "lua";
       settings.bind = lib.mkOrder 1100 [
-        (bind "SUPER + D" "start" {})
-        (bind "SUPER + SHIFT + D" "toggle" {})
-        (bind "SUPER + CTRL + D" "cancel" {})
-        (bind "SUPER + D" "stop" {release = true;})
+        (bind "SUPER + CTRL + D" "start" {})
+        (bind "SUPER + CTRL + ALT + D" "toggle" {})
+        (bind "SUPER + CTRL + D" "stop" {release = true;})
       ];
     };
   };

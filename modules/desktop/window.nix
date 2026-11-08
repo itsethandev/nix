@@ -49,17 +49,17 @@
             (bind "SUPER + X" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "X" })'')
             (bind "SUPER + A" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "A" })'')
             (bind "SUPER + W" "hl.dsp.window.close()")
-            (bind "SUPER + CTRL + W" "hl.dsp.window.kill()")
+            (bind "SUPER + ALT + W" "hl.dsp.window.kill()")
             (bind "SUPER + F" ''hl.dsp.window.fullscreen({ action = "toggle", mode = "fullscreen" })'')
             (bind "SUPER + T" ''hl.dsp.window.float({ action = "toggle" })'')
-            (bind "SUPER + H" ''hl.dsp.focus({ direction = "left" })'')
-            (bind "SUPER + J" ''hl.dsp.focus({ direction = "down" })'')
-            (bind "SUPER + K" ''hl.dsp.focus({ direction = "up" })'')
-            (bind "SUPER + L" ''hl.dsp.focus({ direction = "right" })'')
-            (bind "SUPER + SHIFT + H" ''hl.dsp.window.move({ direction = "left" })'')
-            (bind "SUPER + SHIFT + J" ''hl.dsp.window.move({ direction = "down" })'')
-            (bind "SUPER + SHIFT + K" ''hl.dsp.window.move({ direction = "up" })'')
-            (bind "SUPER + SHIFT + L" ''hl.dsp.window.move({ direction = "right" })'')
+            (bind "SUPER + Left" ''hl.dsp.focus({ direction = "left" })'')
+            (bind "SUPER + Down" ''hl.dsp.focus({ direction = "down" })'')
+            (bind "SUPER + Up" ''hl.dsp.focus({ direction = "up" })'')
+            (bind "SUPER + Right" ''hl.dsp.focus({ direction = "right" })'')
+            (bind "SUPER + SHIFT + Left" ''hl.dsp.window.move({ direction = "left" })'')
+            (bind "SUPER + SHIFT + Down" ''hl.dsp.window.move({ direction = "down" })'')
+            (bind "SUPER + SHIFT + Up" ''hl.dsp.window.move({ direction = "up" })'')
+            (bind "SUPER + SHIFT + Right" ''hl.dsp.window.move({ direction = "right" })'')
             (bind "SUPER + Tab" ''hl.dsp.focus({ monitor = "+1" })'')
             (bind "SUPER + SHIFT + Tab" ''hl.dsp.window.move({ monitor = "+1", follow = false })'')
             {_args = ["SUPER + mouse:272" (lib.generators.mkLuaInline "hl.dsp.window.drag()") {mouse = true;}];}
@@ -70,7 +70,7 @@
             key = toString (lib.mod number 10);
           in [
             (bind "SUPER + ${key}" "hl.dsp.focus({ workspace = ${workspace} })")
-            (bind "SUPER + SHIFT + ${key}" "hl.dsp.window.move({ workspace = ${workspace}, follow = false })")
+            (bind "SUPER + SHIFT + ALT + ${key}" "hl.dsp.window.move({ workspace = ${workspace}, follow = false })")
           ]) (lib.range 1 10);
       };
     };

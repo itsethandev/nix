@@ -55,7 +55,7 @@
     };
 
     wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {
-      bind = lib.mkAfter [{_args = ["SUPER + Return" (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} (lib.getExe pkgs.ghostty)})")];}];
+      bind = lib.mkAfter [{_args = ["SUPER + SHIFT + Return" (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} (lib.getExe pkgs.ghostty)})")];}];
       window_rule = lib.mkAfter [
         {
           name = "ghostty-opacity";
