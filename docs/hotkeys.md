@@ -1,5 +1,7 @@
 # Hotkeys
 
+This document defines the authoritative system hotkeys for Linux. Darwin configurations provide a best-effort approximation: they aim for a familiar experience when switching from Linux, rather than exact parity where a binding or behavior is unreasonably difficult to implement.
+
 ## How hotkeys are laid out
 
 The modifier keys group hotkeys by purpose, so you can use the combination to anticipate what a hotkey does.
@@ -34,6 +36,8 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 | `Super + Shift + Alt + Arrow` | Move the window to the monitor in that direction |
 | `Super + Tab` | Cycle monitor focus |
 | `Super + Alt + Tab` | Cycle monitor focus in reverse |
+| `Super + Shift + Tab` | Move the window to the next monitor and follow it |
+| `Super + Shift + Alt + Tab` | Move the window to the previous monitor and follow it |
 | `Super + Left Click` | Drag the window |
 | `Super + Right Click` | Resize the window |
 | `Super + Middle Click` | Reset zoom |
@@ -70,8 +74,8 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 | `Super + Ctrl + Alt + D` | Toggle dictation |
 | `Super + Ctrl + M` | Toggle audio mute |
 | `Super + Ctrl + Alt + M` | Toggle microphone mute |
-| `Super + Ctrl + P` | Take a screenshot |
-| `Super + Ctrl + Alt + P` | Open the capture menu |
+| `Super + Ctrl + P` | Take an immediate screenshot of the current monitor |
+| `Super + Ctrl + Alt + P` | Open the capture menu to choose a monitor, application, or region |
 
 ## Multimedia
 
