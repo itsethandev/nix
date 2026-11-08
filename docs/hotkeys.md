@@ -8,17 +8,17 @@ The modifier keys group hotkeys by purpose, so you can use the combination to an
 | --- | --- |
 | `Super + key` | Window and workspace controls, layouts, and core menus |
 | `Super + Shift + key` | Launching apps |
-| `Super + Ctrl + key` | Panels and system menus |
-| `Super + Ctrl + Alt + key` | Quick actions and notices |
+| `Super + Ctrl + key` | System controls, panels, menus, and quick actions |
 
 Adding `Alt` changes how the same action works; it never assigns an unrelated action to that hotkey.
+
+For navigation hotkeys, `Shift` moves or swaps windows rather than launching apps.
 
 ## Navigating
 
 | Hotkey | Action |
 | --- | --- |
 | `Super + Space` | Open the app launcher |
-| `Super + Escape` | Open the system menu |
 | `Super + W` | Close the window |
 | `Super + T` | Toggle the window between tiling and floating |
 | `Super + O` | Toggle whether the window is pinned |
@@ -38,16 +38,28 @@ Adding `Alt` changes how the same action works; it never assigns an unrelated ac
 | `Super + Middle Click` | Reset zoom |
 | `Super + Scroll` | Zoom |
 
-## System controls
+## System panels
 
 | Hotkey | Action |
 | --- | --- |
-| `Super + Ctrl + Space` | Toggle the menu |
+| `Super + Ctrl + Space` | Toggle the system panel |
+| `Super + Ctrl + Escape` | Open the session panel |
 | `Super + Ctrl + A` | Open the audio panel |
 | `Super + Ctrl + B` | Open the Bluetooth panel |
-| `Super + Ctrl + M` | Open the display panel |
 | `Super + Ctrl + N` | Open the network panel |
 | `Super + Ctrl + P` | Open the power panel |
+
+## Quick actions
+
+| Hotkey | Action |
+| --- | --- |
+| `Super + Ctrl + Alt + Space` | Toggle the top bar |
+| `Super + Ctrl + C` | Take a screenshot |
+| `Super + Ctrl + Alt + C` | Open the capture menu |
+| `Super + Ctrl + D` | Hold to dictate |
+| `Super + Ctrl + Alt + D` | Toggle dictation |
+| `Super + Ctrl + M` | Toggle audio mute |
+| `Super + Ctrl + Alt + M` | Toggle microphone mute |
 
 ## Launching apps
 
