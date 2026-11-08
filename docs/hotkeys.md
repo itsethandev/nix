@@ -6,7 +6,7 @@ The modifier keys group hotkeys by purpose, so you can use the combination to an
 
 | Key combination | Purpose |
 | --- | --- |
-| `Super + key` | Window and workspace controls, layouts, and core menus |
+| `Super + key` | Window and workspace controls, layouts, core menus, and universal editing actions |
 | `Super + Shift + key` | Launching apps |
 | `Super + Ctrl + key` | System controls, panels, menus, and quick actions |
 
@@ -20,6 +20,7 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 | --- | --- |
 | `Super + Space` | Open the app launcher |
 | `Super + W` | Close the window |
+| `Super + Alt + W` | Force-kill the window |
 | `Super + T` | Toggle the window between tiling and floating |
 | `Super + O` | Toggle whether the window is pinned |
 | `Super + L` | Cycle through the dwindle, scrolling, and master layouts |
@@ -37,6 +38,18 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 | `Super + Right Click` | Resize the window |
 | `Super + Middle Click` | Reset zoom |
 | `Super + Scroll` | Zoom |
+
+## Universal Clipboard
+
+| Hotkey | Action |
+| --- | --- |
+| `Super + C` | Copy |
+| `Super + Ctrl + V` | Open clipboard history |
+| `Super + V` | Paste |
+| `Super + X` | Cut |
+| `Super + A` | Select all |
+| `Super + Z` | Undo |
+| `Super + Shift + Z` | Redo |
 
 ## System panels
 
