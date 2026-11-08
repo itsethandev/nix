@@ -48,3 +48,17 @@ Adding `Alt` changes how the same action works; it never assigns an unrelated ac
 | `Super + Ctrl + M` | Open the display panel |
 | `Super + Ctrl + N` | Open the network panel |
 | `Super + Ctrl + P` | Open the power panel |
+
+## Launching apps
+
+| Hotkey | Action |
+| --- | --- |
+| `Super + Shift + Return` | Open the terminal |
+| `Super + Shift + Alt + Return` | Open the terminal with a multiplexer |
+| `Super + Shift + A` | Open AI |
+| `Super + Shift + B` | Open the browser |
+| `Super + Shift + Alt + B` | Open the browser in incognito mode |
+| `Super + Shift + D` | Open communication apps |
+| `Super + Shift + N` | Open the editor |
+| `Super + Shift + S` | Open gaming apps |
+| `Super + Shift + /` | Open the password manager |
