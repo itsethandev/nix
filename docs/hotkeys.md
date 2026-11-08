@@ -47,19 +47,18 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 | `Super + Ctrl + A` | Open the audio panel |
 | `Super + Ctrl + B` | Open the Bluetooth panel |
 | `Super + Ctrl + N` | Open the network panel |
-| `Super + Ctrl + P` | Open the power panel |
 
 ## Quick actions
 
 | Hotkey | Action |
 | --- | --- |
 | `Super + Ctrl + Alt + Space` | Toggle the top bar |
-| `Super + Ctrl + C` | Take a screenshot |
-| `Super + Ctrl + Alt + C` | Open the capture menu |
 | `Super + Ctrl + D` | Hold to dictate |
 | `Super + Ctrl + Alt + D` | Toggle dictation |
 | `Super + Ctrl + M` | Toggle audio mute |
 | `Super + Ctrl + Alt + M` | Toggle microphone mute |
+| `Super + Ctrl + P` | Take a screenshot |
+| `Super + Ctrl + Alt + P` | Open the capture menu |
 
 ## Launching apps
 
