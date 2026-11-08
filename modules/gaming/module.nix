@@ -39,9 +39,14 @@
   flake.modules.homeManager.gaming = {
     config,
     lib,
+    osConfig,
     pkgs,
     ...
   }: let
+    steam =
+      if osConfig.programs.steam.enable or false
+      then osConfig.programs.steam.package
+      else pkgs.steam;
     gamingWindowPatterns = [
       "^steam_app_.*$"
       "^Hollow Knight Silksong$"
@@ -61,6 +66,7 @@
     gamingWindowPatterns;
   in {
     wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {
+      bind = lib.mkAfter [{_args = ["SUPER + SHIFT + S" (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} (lib.getExe steam)})")];}];
       window_rule = lib.mkMerge [
         (lib.mkOrder 1502 [
           {
@@ -87,7 +93,7 @@
         (lib.mkOrder 1504 gamingWindowRules)
       ];
     };
-    home.packages = [pkgs.archipelago inputs.barnyard.packages.${pkgs.stdenv.hostPlatform.system}.barnyard];
+    home.packages = [steam pkgs.archipelago inputs.barnyard.packages.${pkgs.stdenv.hostPlatform.system}.barnyard];
     programs.mangohud = {
       enable = true;
       enableSessionWide = true;

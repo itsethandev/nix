@@ -1,7 +1,25 @@
 {
-  flake.modules.homeManager.desktop = {lib, ...}: let
+  flake.modules.homeManager.desktop = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: let
+    noctalia = config.programs.noctalia.package;
     exec = chord: command: {
-      _args = [chord (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} "noctalia msg ${command}"})")];
+      _args = [chord (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} "${lib.getExe noctalia} msg ${command}"})")];
+    };
+    captureMenu = pkgs.writeShellApplication {
+      name = "capture-menu";
+      runtimeInputs = [noctalia];
+      text = ''
+        choice=$(printf 'Monitor\nApplication\nRegion\n' | noctalia dmenu -p "Capture") || exit 0
+        case "$choice" in
+          Monitor) exec noctalia msg screenshot-fullscreen pick ;;
+          Application) exec noctalia msg screenshot-window ;;
+          Region) exec noctalia msg screenshot-region ;;
+        esac
+      '';
     };
   in {
     programs.noctalia = {
@@ -36,7 +54,14 @@
         (exec "SUPER + space" "panel-toggle launcher")
         (exec "SUPER + ALT + V" "panel-toggle clipboard")
         (exec "SUPER + CTRL + space" "panel-toggle control-center")
-        (exec "SUPER + CTRL + P" "screenshot-fullscreen")
+        (exec "SUPER + CTRL + Escape" "panel-open session")
+        (exec "SUPER + CTRL + A" "panel-open control-center audio")
+        (exec "SUPER + CTRL + B" "panel-open control-center bluetooth")
+        (exec "SUPER + CTRL + N" "panel-open control-center network")
+        (exec "SUPER + CTRL + ALT + space" "bar-toggle")
+        (exec "SUPER + CTRL + P" "screenshot-fullscreen --no-annotate")
+        {_args = ["SUPER + CTRL + ALT + P" (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} (lib.getExe captureMenu)})")];}
+        (exec "SUPER + CTRL + M" "volume-mute")
         (exec "SUPER + CTRL + ALT + M" "mic-mute")
         (exec "XF86AudioRaiseVolume" "volume-up")
         (exec "XF86AudioLowerVolume" "volume-down")
@@ -48,7 +73,7 @@
         {
           _args = [
             "hyprland.start"
-            (lib.generators.mkLuaInline ''function() hl.exec_cmd("noctalia") end'')
+            (lib.generators.mkLuaInline ''function() hl.exec_cmd(${lib.generators.toLua {} (lib.getExe noctalia)}) end'')
           ];
         }
       ];

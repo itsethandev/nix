@@ -6,6 +6,9 @@
     ...
   }: {
     home.packages = [pkgs.discord];
+    wayland.windowManager.hyprland.settings.bind = lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && config.wayland.windowManager.hyprland.enable) (lib.mkAfter [
+      {_args = ["SUPER + SHIFT + D" (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} (lib.getExe pkgs.discord)})")];}
+    ]);
     wayland.windowManager.hyprland.settings.window_rule = lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && config.wayland.windowManager.hyprland.enable) (lib.mkOrder 1501 [
       {
         name = "discord-popout";

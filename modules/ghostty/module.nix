@@ -17,11 +17,11 @@
         run = ["layout tiling"];
       }
     ];
+    services.aerospace.settings.mode.main.binding."cmd-shift-enter" = lib.mkIf config.services.aerospace.enable (lib.mkDefault "exec-and-forget /usr/bin/open -na Ghostty");
   };
   flake.modules.homeManager.ghostty = {
     config,
     lib,
-    pkgs,
     ...
   }: {
     programs.ghostty = {
@@ -30,7 +30,7 @@
       enableFishIntegration = true;
       installBatSyntax = true;
       settings = {
-        command = lib.mkIf config.programs.herdr.enable (lib.getExe config.programs.herdr.package);
+        command = lib.mkIf config.programs.fish.enable (lib.mkDefault (lib.getExe config.programs.fish.package));
         confirm-close-surface = false;
         copy-on-select = true;
         keybind = [
@@ -55,7 +55,12 @@
     };
 
     wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {
-      bind = lib.mkAfter [{_args = ["SUPER + SHIFT + Return" (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} (lib.getExe pkgs.ghostty)})")];}];
+      bind = lib.mkAfter (
+        [{_args = ["SUPER + SHIFT + Return" (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} (lib.getExe config.programs.ghostty.package)})")];}]
+        ++ lib.optional config.programs.herdr.enable {
+          _args = ["SUPER + SHIFT + ALT + Return" (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} (lib.escapeShellArgs [(lib.getExe config.programs.ghostty.package) "-e" (lib.getExe config.programs.herdr.package)])})")];
+        }
+      );
       window_rule = lib.mkAfter [
         {
           name = "ghostty-opacity";

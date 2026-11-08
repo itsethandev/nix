@@ -5,3 +5,5 @@
 Includes file and Git navigation, fuzzy picking, a minimap, floating terminals, and language servers for CSS, Nix, Python, Rust, Tailwind, and TypeScript. Formatting runs on save, with project-aware JavaScript/TypeScript tools.
 
 Uses a Space leader, two-space indentation, relative line numbers, the system clipboard, and persistent undo.
+
+With Hyprland and Ghostty independently enabled, Super+Shift+N opens Neovim in a plain Ghostty terminal.

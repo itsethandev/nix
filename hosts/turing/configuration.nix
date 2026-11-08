@@ -123,6 +123,7 @@
       neovim
       opencode
       ovis
+      password-manager
       pi
       recording
       rust-toolchain

@@ -18,6 +18,8 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 
 Directional navigation uses `H`, `J`, `K`, and `L` for left, down, up, and right, respectively.
 
+Numbered workspace hotkeys cover workspaces 1–10; `0` selects workspace 10.
+
 ## Navigating
 
 | Hotkey | Action |
@@ -95,10 +97,10 @@ Directional navigation uses `H`, `J`, `K`, and `L` for left, down, up, and right
 | --- | --- |
 | `Super + Shift + Return` | Open the terminal |
 | `Super + Shift + Alt + Return` | Open the terminal with a multiplexer |
-| `Super + Shift + A` | Open AI |
-| `Super + Shift + B` | Open the browser |
-| `Super + Shift + Alt + B` | Open the browser in incognito mode |
-| `Super + Shift + D` | Open communication apps |
-| `Super + Shift + N` | Open the editor |
-| `Super + Shift + S` | Open gaming apps |
-| `Super + Shift + /` | Open the password manager |
+| `Super + Shift + A` | Open OpenCode in a plain Ghostty terminal |
+| `Super + Shift + B` | Open Zen |
+| `Super + Shift + Alt + B` | Open Zen in incognito mode |
+| `Super + Shift + D` | Open Discord |
+| `Super + Shift + N` | Open Neovim in a plain Ghostty terminal |
+| `Super + Shift + S` | Open Steam |
+| `Super + Shift + /` | Open 1Password |
