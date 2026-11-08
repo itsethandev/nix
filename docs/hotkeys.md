@@ -44,7 +44,7 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 | Hotkey | Action |
 | --- | --- |
 | `Super + C` | Copy |
-| `Super + Ctrl + V` | Open clipboard history |
+| `Super + Alt + V` | Open clipboard history |
 | `Super + V` | Paste |
 | `Super + X` | Cut |
 | `Super + A` | Select all |

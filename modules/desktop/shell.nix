@@ -34,7 +34,7 @@
     wayland.windowManager.hyprland.settings = {
       bind = [
         (exec "SUPER + space" "panel-toggle launcher")
-        (exec "SUPER + CTRL + V" "panel-toggle clipboard")
+        (exec "SUPER + ALT + V" "panel-toggle clipboard")
         (exec "SUPER + CTRL + space" "panel-toggle control-center")
         (exec "SUPER + P" "screenshot-fullscreen")
         (exec "SUPER + SHIFT + P" "screenshot-region")
