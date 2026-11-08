@@ -75,6 +75,16 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 | `Super + Ctrl + P` | Take a screenshot |
 | `Super + Ctrl + Alt + P` | Open the capture menu |
 
+## Multimedia
+
+| Hotkey | Action |
+| --- | --- |
+| `Volume Up` | Increase audio volume |
+| `Volume Down` | Decrease audio volume |
+| `Mute` | Toggle audio mute |
+| `Brightness Up` | Increase screen brightness |
+| `Brightness Down` | Decrease screen brightness |
+
 ## Launching apps
 
 | Hotkey | Action |
