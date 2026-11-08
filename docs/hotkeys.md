@@ -53,6 +53,8 @@ For navigation hotkeys, `Shift` moves or swaps windows rather than launching app
 | Hotkey | Action |
 | --- | --- |
 | `Super + Ctrl + Alt + Space` | Toggle the top bar |
+| `Super + Ctrl + C` | Pick a color and copy its hex code (`#rrggbb`) |
+| `Super + Ctrl + Alt + C` | Pick a color and copy its RGB value (`rgb(r, g, b)`) |
 | `Super + Ctrl + D` | Hold to dictate |
 | `Super + Ctrl + Alt + D` | Toggle dictation |
 | `Super + Ctrl + M` | Toggle audio mute |
