@@ -22,15 +22,15 @@
           "cmd-f" = lib.mkDefault "fullscreen";
           "cmd-t" = lib.mkDefault "layout floating tiling";
 
-          "cmd-left" = lib.mkDefault "focus left --boundaries all-monitors-outer-frame";
-          "cmd-down" = lib.mkDefault "focus down --boundaries all-monitors-outer-frame";
-          "cmd-up" = lib.mkDefault "focus up --boundaries all-monitors-outer-frame";
-          "cmd-right" = lib.mkDefault "focus right --boundaries all-monitors-outer-frame";
+          "cmd-h" = lib.mkDefault "focus left --boundaries all-monitors-outer-frame";
+          "cmd-j" = lib.mkDefault "focus down --boundaries all-monitors-outer-frame";
+          "cmd-k" = lib.mkDefault "focus up --boundaries all-monitors-outer-frame";
+          "cmd-l" = lib.mkDefault "focus right --boundaries all-monitors-outer-frame";
 
-          "cmd-shift-left" = lib.mkDefault "move left --boundaries all-monitors-outer-frame";
-          "cmd-shift-down" = lib.mkDefault "move down --boundaries all-monitors-outer-frame";
-          "cmd-shift-up" = lib.mkDefault "move up --boundaries all-monitors-outer-frame";
-          "cmd-shift-right" = lib.mkDefault "move right --boundaries all-monitors-outer-frame";
+          "cmd-shift-h" = lib.mkDefault "move left --boundaries all-monitors-outer-frame";
+          "cmd-shift-j" = lib.mkDefault "move down --boundaries all-monitors-outer-frame";
+          "cmd-shift-k" = lib.mkDefault "move up --boundaries all-monitors-outer-frame";
+          "cmd-shift-l" = lib.mkDefault "move right --boundaries all-monitors-outer-frame";
 
           "cmd-1" = lib.mkDefault "workspace 1";
           "cmd-2" = lib.mkDefault "workspace 2";
