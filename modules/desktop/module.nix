@@ -1,23 +1,13 @@
-{inputs, ...}: let
-  noctaliaFor = pkgs:
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
-      patches = (old.patches or []) ++ [./noctalia-enter-to-unlock.patch];
-    });
-in {
+{inputs, ...}: {
   flake.modules.homeManager.desktop = {pkgs, ...}: {
     imports = [inputs.noctalia.homeModules.default];
-    programs.noctalia.package = noctaliaFor pkgs;
+    programs.noctalia.package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
   flake.modules.nixos.desktop = {pkgs, ...}: {
     imports = [
       inputs.noctalia.nixosModules.default
       inputs.stylix.nixosModules.stylix
     ];
-    nixpkgs.overlays = [
-      (_final: _prev: {
-        noctalia = noctaliaFor pkgs;
-      })
-    ];
-    programs.noctalia.package = pkgs.noctalia;
+    programs.noctalia.package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 }

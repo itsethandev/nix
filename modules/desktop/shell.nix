@@ -28,8 +28,7 @@
         idle.behavior = {
           lock = {
             action = lib.mkDefault "lock";
-            enabled = lib.mkDefault true;
-            timeout = lib.mkDefault 600;
+            enabled = lib.mkDefault false;
           };
           lock-and-suspend = {
             action = lib.mkDefault "lock_and_suspend";
