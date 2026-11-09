@@ -69,6 +69,7 @@ in {
     programs.opencode.settings = lib.mkIf config.programs.opencode.enable {
       mcp.servers.agent-browser = {
         type = "local";
+        disabled = lib.mkDefault true;
         command = lib.mkDefault [(lib.getExe browse) "mcp"];
       };
     };
