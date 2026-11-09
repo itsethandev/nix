@@ -100,6 +100,7 @@
 
   home.turing = {pkgs, ...}: {
     imports = with config.flake.modules.homeManager; [
+      agent-browser
       browser
       bun
       claude-desktop
