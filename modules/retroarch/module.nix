@@ -12,6 +12,7 @@
         savefile_directory = "${config.home.homeDirectory}/Games/saves";
         savestate_directory = "${config.home.homeDirectory}/Games/states";
         fastforward_ratio = "3.0";
+        autosave_interval = "10";
         savestate_auto_save = "true";
         savestate_auto_load = "true";
       };

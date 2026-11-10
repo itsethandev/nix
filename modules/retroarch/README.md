@@ -2,7 +2,7 @@
 
 `modules.homeManager.retroarch` installs RetroArch, starts its content browser in `~/Games/roms`, and sets the BIOS directory to `~/Games/bios`.
 
-Home Manager creates `~/Games/saves` for in-game saves and `~/Games/states` for save states. RetroArch saves an automatic state on clean exit and loads it when reopening the game, where the core supports save states. Fast-forward is capped at 3× speed. Existing saves are not moved to the new directories.
+Home Manager creates `~/Games/saves` for in-game saves and `~/Games/states` for save states. RetroArch flushes supported in-game save data to disk every 10 seconds. It saves an automatic state on clean exit and loads it when reopening the game, where the core supports save states. Fast-forward is capped at 3× speed. Existing saves are not moved to the new directories.
 
 Supply ROMs and core-specific BIOS files in those directories. No emulator cores are enabled and ROMs are not automatically scanned into playlists. Settings and cores can be configured through `programs.retroarch`.
 
