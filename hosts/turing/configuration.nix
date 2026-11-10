@@ -106,6 +106,7 @@
   home.turing = {pkgs, ...}: {
     imports = with config.flake.modules.homeManager; [
       agent-browser
+      agent-tools
       browser
       bun
       claude-desktop
@@ -151,9 +152,6 @@
       email = "turing@itsEthan.dev";
       name = "Ethan Brady";
     };
-    programs.fish = {
-      shellAliases.pi = "nix develop ~/.config/nix#pi --command pi";
-      shellAbbrs.pic = "pi -e npm:@agent-sh/computer-use-linux";
-    };
+    programs.fish.shellAbbrs.pic = "pi -e npm:@agent-sh/computer-use-linux";
   };
 }

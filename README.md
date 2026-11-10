@@ -49,15 +49,16 @@ Home Manager consumers can import modules such as `inputs.ethan.modules.homeMana
 - `modules.<class>.<feature>`: independently consumable NixOS, nix-darwin, and Home Manager modules.
 - `overlays`: package overrides and their default composition.
 - `packages.<system>`: Linux packages maintained here.
-- `devShells.<system>`: `js`, `lua`, `pi`, `python`, and `rust` development environments.
+- `devShells.<system>`: `js`, `lua`, `python`, and `rust` development environments.
 - `checks.<system>`: architectural contracts and Nix formatting.
 
 For example:
 
 ```sh
 nix develop .#js
-nix develop .#pi --command pi
 ```
+
+The [`agent-tools`](modules/agent-tools/) Home Manager module installs shared CLI tools into the user environment for Pi, OpenCode, and ordinary terminal commands.
 
 ## Checks
 

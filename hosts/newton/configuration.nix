@@ -77,6 +77,7 @@
   };
   home.newton = {
     imports = with config.flake.modules.homeManager; [
+      agent-tools
       bun
       development-tools
       diff-review
