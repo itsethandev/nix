@@ -79,7 +79,7 @@ Numbered workspace hotkeys cover workspaces 1–10; `0` selects workspace 10.
 | `Super + Ctrl + M` | Toggle audio mute |
 | `Super + Ctrl + Alt + M` | Toggle microphone mute |
 | `Super + Ctrl + P` | Take an immediate screenshot of the current monitor |
-| `Super + Ctrl + Alt + P` | Open the capture menu to choose a monitor, application, or region |
+| `Super + Ctrl + Alt + P` | Toggle the frozen screenshot picker: drag a region, click a window, or click background for the monitor; press `E` or `A` before selecting to annotate |
 
 ## Multimedia
 

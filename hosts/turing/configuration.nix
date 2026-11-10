@@ -128,6 +128,7 @@
       pi
       recording
       rust-toolchain
+      screenshots
       system-monitor
       terminal
       vite-plus
