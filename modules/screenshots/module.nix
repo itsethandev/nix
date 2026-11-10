@@ -79,7 +79,7 @@ in {
         }) [
           {
             chord = "SUPER + CTRL + P";
-            arguments = " --capture-fullscreen --copy --save";
+            arguments = " --capture-fullscreen";
           }
           {
             chord = "SUPER + CTRL + ALT + P";
