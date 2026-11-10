@@ -11,7 +11,8 @@
       load_state = "l";
       save_state = "r";
       runahead_toggle = "up";
-      exit_emulator = "start";
+      close_content = "start";
+      exit_emulator = null;
       menu_toggle = "x";
       fps_toggle = "y";
       reset = "b";
@@ -30,7 +31,7 @@
         input_joypad_driver = "udev";
         input_autodetect_enable = "true";
         joypad_autoconfig_dir = "${profiles}";
-        rewind_enable = "true";
+        quit_on_close_content = "0";
       }
       // lib.listToAttrs (lib.concatMap (action:
         map (kind: lib.nameValuePair "input_${action}_${kind}" "nul") ["btn" "axis"])

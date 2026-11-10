@@ -15,6 +15,8 @@
         autosave_interval = "10";
         savestate_auto_save = "true";
         savestate_auto_load = "true";
+        rewind_enable = "false";
+        run_ahead_enabled = "false";
       };
     };
     home.activation.retroarchSaveDirectories = lib.hm.dag.entryAfter ["writeBoundary"] ''

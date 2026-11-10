@@ -8,6 +8,8 @@ Mesen is enabled for NES games. NES cartridge games need no BIOS; Famicom Disk S
 
 Core-specific configuration lives in `cores/<core>.nix`. Mesen uses its core-provided aspect ratio, integer scaling, no bilinear smoothing, and no shader. These display settings apply only to Mesen; integer scaling can leave larger borders. Nix owns the Mesen core override file, so edit it here rather than using RetroArch's **Save Core Overrides** action. Automatic override loading must remain enabled.
 
+Rewind and one-frame run-ahead are enabled for Mesen only. Run-ahead reduces internal input latency at additional CPU cost; its frame count may need adjustment per game. Use Select/Back + D-pad Up to toggle it if a game stutters or behaves incorrectly.
+
 ## Game library
 
 Box-art thumbnails download on demand when browsing playlists with matching artwork. Playlists and downloaded artwork stay writable in RetroArch's default directories under `~/.config/retroarch`; Nix does not manage their contents.
@@ -41,9 +43,9 @@ On Linux, controller hotkeys use the bundled `udev` profiles. Hold Select/Back a
 | Left shoulder | Load state |
 | Right shoulder | Save state |
 | D-pad up | Toggle run-ahead |
-| Start | Quit RetroArch |
+| Start | Close the game and return to the library |
 | Top face button | Quick menu |
 | Left face button | Toggle FPS |
 | Bottom face button | Reset game |
 
-Rewind is enabled; support depends on the core. Hotkeys follow button positions, not printed letters. Profiles without a Select/Back mapping keep their existing bindings. New or unrecognized controllers need a matching profile; the Steam Controller's native kernel-driver mapping still needs hardware verification.
+Hotkeys follow button positions, not printed letters. Profiles without a Select/Back mapping keep their existing bindings. New or unrecognized controllers need a matching profile; the Steam Controller's native kernel-driver mapping still needs hardware verification.

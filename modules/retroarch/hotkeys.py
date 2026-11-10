@@ -29,6 +29,10 @@ for profile in (destination / "udev").glob("*.cfg"):
     for action, control in bindings.items():
         for kind in ("btn", "axis"):
             key = f"input_{action}_{kind}"
+            if control is None:
+                replacements[key] = "nul"
+                replacements[f"{key}_label"] = ""
+                continue
             source_key = f"input_{control}_{kind}"
             replacements[key] = entries.get(source_key, "nul")
             replacements[f"{key}_label"] = entries.get(f"{source_key}_label", control)

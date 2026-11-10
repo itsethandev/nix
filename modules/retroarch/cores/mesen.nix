@@ -8,6 +8,9 @@
       video_scale_integer = "true"
       video_smooth = "false"
       video_shader_enable = "false"
+      rewind_enable = "true"
+      run_ahead_enabled = "true"
+      run_ahead_frames = "1"
     '';
   };
 }
