@@ -6,6 +6,7 @@
   }: {
     programs.retroarch = {
       enable = true;
+      cores.mesen.enable = true;
       settings = {
         rgui_browser_directory = "${config.home.homeDirectory}/Games/roms";
         system_directory = "${config.home.homeDirectory}/Games/bios";
