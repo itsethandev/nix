@@ -76,7 +76,12 @@
       repository = "s3:https://7be572932f308ef922603015d775fdd2.r2.cloudflarestorage.com/backup/turing";
       environmentFile = "/etc/restic/r2.env";
       passwordFile = "/etc/restic/password";
-      paths = ["/home/ethan/Pictures/Screenshots" "/home/ethan/Documents"];
+      paths = [
+        "/home/ethan/Pictures/Screenshots"
+        "/home/ethan/Documents"
+        "/home/ethan/Games/saves"
+        "/home/ethan/Games/states"
+      ];
       exclude = [];
       extraOptions = ["s3.bucket-lookup=path"];
     };
