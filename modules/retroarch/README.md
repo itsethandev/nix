@@ -2,6 +2,8 @@
 
 `modules.homeManager.retroarch` installs RetroArch, starts its content browser in `~/Games/roms`, and sets the BIOS directory to `~/Games/bios`.
 
+The menu uses Ozone with its built-in Gruvbox Dark palette, independent of the desktop's theme. No RetroArch patches are applied.
+
 Home Manager creates `~/Games/saves` for in-game saves and `~/Games/states` for save states. RetroArch flushes supported in-game save data to disk every 10 seconds. It saves an automatic state on clean exit and loads it when reopening the game, where the core supports save states. Fast-forward is capped at 3× speed. Existing saves are not moved to the new directories.
 
 Mesen is enabled for NES games. NES cartridge games need no BIOS; Famicom Disk System games require `~/Games/bios/disksys.rom`. Supply your own ROMs; they are not automatically scanned into playlists. Settings and cores can be configured through `programs.retroarch`.
