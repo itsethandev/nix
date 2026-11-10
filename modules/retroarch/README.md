@@ -6,6 +6,8 @@ Home Manager creates `~/Games/saves` for in-game saves and `~/Games/states` for 
 
 Mesen is enabled for NES games. NES cartridge games need no BIOS; Famicom Disk System games require `~/Games/bios/disksys.rom`. Supply your own ROMs; they are not automatically scanned into playlists. Settings and cores can be configured through `programs.retroarch`.
 
+Core-specific configuration lives in `cores/<core>.nix`. Mesen uses its core-provided aspect ratio, integer scaling, no bilinear smoothing, and no shader. These display settings apply only to Mesen; integer scaling can leave larger borders. Nix owns the Mesen core override file, so edit it here rather than using RetroArch's **Save Core Overrides** action. Automatic override loading must remain enabled.
+
 ## Game library
 
 Box-art thumbnails download on demand when browsing playlists with matching artwork. Playlists and downloaded artwork stay writable in RetroArch's default directories under `~/.config/retroarch`; Nix does not manage their contents.
