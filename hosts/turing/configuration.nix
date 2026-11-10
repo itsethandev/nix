@@ -127,6 +127,7 @@
       password-manager
       pi
       recording
+      retroarch
       rust-toolchain
       screenshots
       system-monitor
