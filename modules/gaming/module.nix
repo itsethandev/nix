@@ -49,6 +49,7 @@
       else pkgs.steam;
     gamingWindowPatterns = [
       "^steam_app_.*$"
+      "^(com\\.libretro\\.RetroArch|retroarch)$"
       "^Hollow Knight Silksong$"
       "^Hytale$"
       "^deadcells$"
