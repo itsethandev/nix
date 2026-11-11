@@ -50,4 +50,4 @@ On Linux, controller hotkeys use the bundled `udev` profiles. Hold Select/Back a
 | Left face button | Toggle FPS |
 | Bottom face button | Reset game |
 
-Hotkeys follow button positions, not printed letters. Profiles without a Select/Back mapping keep their existing bindings. New or unrecognized controllers need a matching profile; the Steam Controller's native kernel-driver mapping still needs hardware verification.
+Hotkeys follow button positions, not printed letters. Profiles without a Select/Back mapping keep their existing bindings. The Steam Controller (2026) has a native Linux profile for the wireless puck (`28de:1304`); USB and Bluetooth connections need their own matching profiles. Trigger hotkeys use the digital trigger clicks. New or unrecognized controllers need a matching profile.

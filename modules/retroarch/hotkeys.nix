@@ -23,7 +23,8 @@
       } ''
         python ${./hotkeys.py} \
           ${pkgs.retroarch-joypad-autoconfig}/share/libretro/autoconfig \
-          "$out" ${pkgs.writeText "retroarch-hotkeys.json" (builtins.toJSON bindings)}
+          "$out" ${pkgs.writeText "retroarch-hotkeys.json" (builtins.toJSON bindings)} \
+          ${./controllers}
       '';
   in {
     programs.retroarch.settings =

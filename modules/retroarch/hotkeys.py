@@ -7,9 +7,12 @@ import shutil
 import sys
 
 
-source, destination, bindings_file = map(Path, sys.argv[1:])
+source, destination, bindings_file, controller_profiles = map(Path, sys.argv[1:])
 bindings = json.loads(bindings_file.read_text())
 shutil.copytree(source, destination)
+# Add native profiles before deriving hotkeys from their normal controls.
+(destination / "udev").chmod(0o755)
+shutil.copytree(controller_profiles, destination / "udev", dirs_exist_ok=True)
 
 for profile in (destination / "udev").glob("*.cfg"):
     lines = profile.read_text(encoding="utf-8-sig").splitlines()
