@@ -28,7 +28,7 @@
       clearDefaultKeybinds = true;
       enable = true;
       enableFishIntegration = true;
-      installBatSyntax = true;
+      installBatSyntax = false;
       settings = {
         command = lib.mkIf config.programs.fish.enable (lib.mkDefault (lib.getExe config.programs.fish.package));
         confirm-close-surface = false;

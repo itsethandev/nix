@@ -1,6 +1,7 @@
 {
   flake.modules.homeManager.terminal = {
     lib,
+    options,
     pkgs,
     ...
   }: let
@@ -17,77 +18,86 @@
       tree = "eza -T";
     };
   in {
-    programs = {
-      bat.enable = lib.mkDefault true;
-
-      eza = {
-        enable = lib.mkDefault true;
-        enableFishIntegration = lib.mkDefault true;
-        git = lib.mkDefault true;
-        icons = lib.mkDefault "auto";
-      };
-
-      fish = {
-        enable = lib.mkDefault true;
-        binds."\\cy" = {
-          command = lib.mkDefault "accept-autosuggestion";
-          mode = lib.mkDefault "insert";
-        };
-        interactiveShellInit = ''
-          fish_vi_key_bindings
-          set fish_greeting
-
-          function last_history_item
-            echo $history[1]
-          end
-          abbr -a !! --position anywhere --function last_history_item
-
-          function __list_directory_on_change --on-variable PWD
-            status is-interactive; and ls
-          end
+    config =
+      {
+        home.packages = [pkgs.bat];
+        xdg.configFile."bat/config".text = ''
+          --theme="base16"
         '';
-        shellAbbrs."C" = {
-          position = lib.mkDefault "anywhere";
-          expansion = lib.mkDefault copyCommand;
+
+        programs = {
+          eza = {
+            enable = lib.mkDefault true;
+            enableFishIntegration = lib.mkDefault true;
+            git = lib.mkDefault true;
+            icons = lib.mkDefault "auto";
+          };
+
+          fish = {
+            enable = lib.mkDefault true;
+            binds."\\cy" = {
+              command = lib.mkDefault "accept-autosuggestion";
+              mode = lib.mkDefault "insert";
+            };
+            interactiveShellInit = ''
+              fish_vi_key_bindings
+              set fish_greeting
+
+              function last_history_item
+                echo $history[1]
+              end
+              abbr -a !! --position anywhere --function last_history_item
+
+              function __list_directory_on_change --on-variable PWD
+                status is-interactive; and ls
+              end
+            '';
+            shellAbbrs."C" = {
+              position = lib.mkDefault "anywhere";
+              expansion = lib.mkDefault copyCommand;
+            };
+            inherit shellAliases;
+          };
+
+          fzf = {
+            enable = lib.mkDefault true;
+            enableFishIntegration = lib.mkDefault true;
+            fileWidget.options = [
+              "-i"
+              "-e"
+            ];
+            historyWidget.options = [
+              "-i"
+              "-e"
+            ];
+          };
+
+          starship = {
+            enable = lib.mkDefault true;
+            enableFishIntegration = lib.mkDefault true;
+            enableTransience = lib.mkDefault true;
+            settings = {
+              bun.disabled = lib.mkDefault true;
+              cmd_duration.disabled = lib.mkDefault true;
+              gcloud.disabled = lib.mkDefault true;
+              git_branch.format = lib.mkDefault "[$branch(:$remote_branch)]($style) ";
+              hostname.ssh_symbol = lib.mkDefault "";
+              nodejs.disabled = lib.mkDefault true;
+              package.disabled = lib.mkDefault true;
+              rust.disabled = lib.mkDefault true;
+              username.disabled = lib.mkDefault true;
+            };
+          };
+
+          zoxide = {
+            enable = lib.mkDefault true;
+            enableFishIntegration = lib.mkDefault true;
+          };
         };
-        inherit shellAliases;
+      }
+      // lib.optionalAttrs (options ? stylix.enable) {
+        stylix.targets.bat.enable = false;
       };
-
-      fzf = {
-        enable = lib.mkDefault true;
-        enableFishIntegration = lib.mkDefault true;
-        fileWidget.options = [
-          "-i"
-          "-e"
-        ];
-        historyWidget.options = [
-          "-i"
-          "-e"
-        ];
-      };
-
-      starship = {
-        enable = lib.mkDefault true;
-        enableFishIntegration = lib.mkDefault true;
-        enableTransience = lib.mkDefault true;
-        settings = {
-          bun.disabled = lib.mkDefault true;
-          cmd_duration.disabled = lib.mkDefault true;
-          gcloud.disabled = lib.mkDefault true;
-          git_branch.format = lib.mkDefault "[$branch(:$remote_branch)]($style) ";
-          hostname.ssh_symbol = lib.mkDefault "";
-          nodejs.disabled = lib.mkDefault true;
-          package.disabled = lib.mkDefault true;
-          rust.disabled = lib.mkDefault true;
-          username.disabled = lib.mkDefault true;
-        };
-      };
-
-      zoxide = {
-        enable = lib.mkDefault true;
-        enableFishIntegration = lib.mkDefault true;
-      };
-    };
   };
   flake.modules.darwin.terminal = {config, ...}: {
     environment.shells = [config.programs.fish.package];
