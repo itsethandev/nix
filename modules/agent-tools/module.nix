@@ -1,12 +1,5 @@
 {
   flake.modules.homeManager.agent-tools = {pkgs, ...}: let
-    mdts = pkgs.buildNpmPackage {
-      pname = "mdts";
-      version = "0.20.6";
-      src = ./mdts;
-      npmDepsHash = "sha256-upjCEWTbFEDXdqnlcpQg7HSONvvWobyC1I5VHljsTrk=";
-      dontNpmBuild = true;
-    };
     python = pkgs.python3.withPackages (pythonPackages:
       with pythonPackages; [
         beautifulsoup4
@@ -35,7 +28,6 @@
         pkgs.imagemagick
         pkgs.jq
         pkgs.lychee
-        mdts
         pkgs.nodejs
         pkgs.openssl
         pkgs.pandoc
