@@ -1,3 +1,3 @@
 # File manager
 
-`modules.homeManager.file-manager` adds a Nemo launcher and makes it the default application for directories and saved searches on Linux. The launcher supplies Nemo with its extensions.
+`modules.homeManager.file-manager` installs Nautilus (GNOME Files) and makes it the default application for directories and saved searches on Linux.

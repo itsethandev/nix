@@ -1,20 +1,12 @@
 {
-  flake.modules.homeManager.file-manager = {
-    lib,
-    pkgs,
-    ...
-  }: {
-    xdg = {
-      desktopEntries.nemo = {
-        name = "Nemo";
-        exec = lib.getExe' pkgs.nemo-with-extensions "nemo";
-      };
-      mimeApps = {
-        enable = true;
-        defaultApplications = {
-          "inode/directory" = ["nemo.desktop"];
-          "application/x-gnome-saved-search" = ["nemo.desktop"];
-        };
+  flake.modules.homeManager.file-manager = {pkgs, ...}: {
+    home.packages = [pkgs.nautilus];
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "inode/directory" = ["org.gnome.Nautilus.desktop"];
+        "application/x-gnome-saved-search" = ["org.gnome.Nautilus.desktop"];
       };
     };
   };
