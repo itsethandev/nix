@@ -28,7 +28,7 @@
         after = ["tailscaled.service" "tailscaled-autoconnect.service"];
         requires = ["tailscaled.service"];
         partOf = ["tailscaled.service"];
-        wantedBy = ["tailscaled.service"];
+        wantedBy = ["multi-user.target"];
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;

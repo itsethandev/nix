@@ -64,13 +64,19 @@
       countryCode = "US";
       adapterMacAddress = "9C:04:B6:88:D5:B9";
     };
-    services.tailscale.serveConfig = {
-      TCP."443".HTTPS = true;
-      TCP."3000".HTTPS = true;
-      TCP."5173".HTTPS = true;
-      Web."turing.tailnet.ethanbrady.xyz:443".Handlers."/".Proxy = "http://127.0.0.1:7317";
-      Web."turing.tailnet.ethanbrady.xyz:3000".Handlers."/".Proxy = "http://127.0.0.1:3000";
-      Web."turing.tailnet.ethanbrady.xyz:5173".Handlers."/".Proxy = "http://127.0.0.1:5173";
+    services.tailscale.serveConfig = let
+      httpsProxies = {
+        "443" = 7317;
+        "3000" = 3000;
+        "5173" = 5173;
+      };
+    in {
+      TCP = lib.mapAttrs (_: _: {HTTPS = true;}) httpsProxies;
+      Web = lib.mapAttrs' (port: localPort:
+        lib.nameValuePair "turing.tailnet.ethanbrady.xyz:${port}" {
+          Handlers."/".Proxy = "http://127.0.0.1:${toString localPort}";
+        })
+      httpsProxies;
     };
     networking.firewall.interfaces.tailscale0 = {
       allowedTCPPorts = [22 3000 5173 5520 6419 8521 25565 38281 445];
