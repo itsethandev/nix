@@ -64,6 +64,10 @@
       countryCode = "US";
       adapterMacAddress = "9C:04:B6:88:D5:B9";
     };
+    services.tailscale.serveConfig = {
+      TCP."443".HTTPS = true;
+      Web."turing.tailnet.ethanbrady.xyz:443".Handlers."/".Proxy = "http://127.0.0.1:7317";
+    };
     networking.firewall.interfaces.tailscale0 = {
       allowedTCPPorts = [22 3000 5173 5520 6419 8521 25565 38281 445];
       allowedUDPPorts = [22 3000 5173 5520 6419 25565 38281];

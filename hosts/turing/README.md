@@ -6,6 +6,8 @@ Includes Hyprland and Noctalia, Omasnap screenshots, PipeWire audio, Steam and S
 
 Installs [shared agent CLI tools](../../modules/agent-tools) into the user environment for Pi and OpenCode.
 
+Declares Tailscale Serve HTTPS port 443 at `turing.tailnet.ethanbrady.xyz`, proxying `/` to Ovis on `127.0.0.1:7317`. The declaration replaces all existing Serve and Funnel settings; no other routes are retained.
+
 Automatically logs into the graphical session and permits passwordless sudo for wheel members. SSH and Samba access use Tailscale interface rules; LocalSend and Steam also open firewall ports.
 
 Restic backs up Documents, screenshots, and RetroArch's `~/Games/saves` and `~/Games/states` directories to R2. Credentials must exist at `/etc/restic/r2.env` and `/etc/restic/password`; the declared Steam Frame adapter and SSH public keys are host-specific.
