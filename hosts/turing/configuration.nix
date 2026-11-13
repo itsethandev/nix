@@ -66,7 +66,11 @@
     };
     services.tailscale.serveConfig = {
       TCP."443".HTTPS = true;
+      TCP."3000".HTTPS = true;
+      TCP."5173".HTTPS = true;
       Web."turing.tailnet.ethanbrady.xyz:443".Handlers."/".Proxy = "http://127.0.0.1:7317";
+      Web."turing.tailnet.ethanbrady.xyz:3000".Handlers."/".Proxy = "http://127.0.0.1:3000";
+      Web."turing.tailnet.ethanbrady.xyz:5173".Handlers."/".Proxy = "http://127.0.0.1:5173";
     };
     networking.firewall.interfaces.tailscale0 = {
       allowedTCPPorts = [22 3000 5173 5520 6419 8521 25565 38281 445];
