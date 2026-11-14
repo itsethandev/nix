@@ -48,6 +48,8 @@ Integrate with another capability only when it is independently selected. Do not
 
 Each consumable feature, host, and development shell has a colocated `README.md`. Describe what selecting it enables, installs, or changes, with supported platforms and caller prerequisites where relevant. Include only enough to understand its effects; omit implementation narration, plans, and history. Update the README alongside behavior changes. Structural plumbing and private configuration fragments do not need separate READMEs.
 
+Module READMEs describe the module's own behavior, required dependencies, and integrations it implements. Do not add workflows or cross-links merely because independently usable features can be combined. Put host-specific combinations and workflows in host documentation.
+
 ### Abstractions must earn their place
 
 Introduce an abstraction when it hides meaningful decisions or coordinates coherent behavior—not merely to rename upstream options, shorten a file, or anticipate hypothetical reuse.
