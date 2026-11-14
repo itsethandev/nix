@@ -34,6 +34,7 @@
           TITLE = "Remote browser";
           CHROME_CLI = "about:blank";
           HARDEN_DESKTOP = "true";
+          RESTART_APP = "true";
           START_DOCKER = "false";
         };
         volumes = [

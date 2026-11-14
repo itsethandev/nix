@@ -1,6 +1,6 @@
 # Remote browser
 
-`modules.nixos.remote-browser` runs persistent Chromium through Selkies on NixOS using Docker. The LinuxServer image is pinned by digest; updates require changing that pin. CPU rendering and encoding work without GPU passthrough.
+`modules.nixos.remote-browser` runs persistent Chromium through Selkies on NixOS using Docker. Chromium reopens automatically when its window is closed. The LinuxServer image is pinned by digest; updates require changing that pin. CPU rendering and encoding work without GPU passthrough.
 
 The `remote-browser` system service listens for HTTP on `127.0.0.1:6080`, with Selkies's backend on loopback port 6082. Host networking lets Chromium reach development servers at the host's localhost. No source directories, host home, Docker socket, or GPU devices are mounted. The image disables Chromium's sandbox, so treat the container as a dedicated development browser, not an isolated security environment for untrusted browsing.
 
