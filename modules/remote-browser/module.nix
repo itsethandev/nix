@@ -7,12 +7,16 @@
     passwordFile = "/var/lib/remote-browser/password";
     initializePassword = pkgs.writeShellApplication {
       name = "remote-browser-password";
-      runtimeInputs = [pkgs.openssl];
+      runtimeInputs = [pkgs.coreutils pkgs.openssl];
       text = ''
+        umask 077
         if [ ! -s ${passwordFile} ]; then
-          umask 077
-          openssl rand -base64 32 > ${passwordFile}
+          password="$(openssl rand -base64 32)"
+        else
+          password="$(cat ${passwordFile})"
         fi
+        # FILE__PASSWORD preserves newlines, so normalize existing files as well.
+        printf '%s' "$password" > ${passwordFile}
       '';
     };
   in {
