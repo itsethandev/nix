@@ -78,6 +78,7 @@ Numbered workspace hotkeys cover workspaces 1–10; `0` selects workspace 10.
 | `Super + Ctrl + Alt + D` | Toggle dictation |
 | `Super + Ctrl + M` | Toggle audio mute |
 | `Super + Ctrl + Alt + M` | Toggle microphone mute |
+| `Super + Ctrl + V` | Hold to mute only Discord (requires its Push to Mute keybind and Voice Activity mode) |
 | `Super + Ctrl + P` | Take an immediate screenshot of the current monitor |
 | `Super + Ctrl + Alt + P` | Toggle the frozen screenshot picker: drag a region, click a window, or click background for the monitor; press `E` or `A` before selecting to annotate |
 
