@@ -138,6 +138,7 @@
       javascript-toolchain
       music
       neovim
+      obsidian
       opencode
       ovis
       password-manager
