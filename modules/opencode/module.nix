@@ -11,6 +11,7 @@
       tui = lib.mkIf (options ? stylix.enable && config.stylix.enable) (lib.mkForce {});
       cli = {
         attention.notifications = lib.mkDefault false;
+        prompt.paste = lib.mkDefault "full";
         plugins = lib.mkIf config.programs.herdr.enable [
           "${config.xdg.configHome}/opencode/herdr-opencode"
         ];
