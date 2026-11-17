@@ -163,7 +163,8 @@
     };
     programs.home-manager.enable = true;
     wayland.windowManager.hyprland.settings.bind = let
-      chord = "SUPER + CTRL + ALT + SHIFT + F13";
+      # XKB maps the keyboard's F13 to XF86Tools; match its keycode instead.
+      chord = "SUPER + CTRL + ALT + SHIFT + code:191";
       hex = lib.getExe home.config.programs.hex.package;
     in [
       {
