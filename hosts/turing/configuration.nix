@@ -27,7 +27,6 @@
         password-manager
         phone-camera
         recording
-        remote-browser
         ssh
         steam-frame
         tailscale
@@ -71,7 +70,6 @@
         "443" = 7317;
         "3000" = 3000;
         "5173" = 5173;
-        "6080" = 6080;
       };
     };
     networking.firewall.interfaces.tailscale0 = {
