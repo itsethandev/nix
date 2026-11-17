@@ -113,7 +113,11 @@
     };
   };
 
-  home.turing = {pkgs, ...}: {
+  home.turing = {
+    pkgs,
+    lib,
+    ...
+  } @ home: {
     imports = with config.flake.modules.homeManager; [
       agent-browser
       agent-tools
@@ -158,6 +162,20 @@
       stateVersion = "25.11";
     };
     programs.home-manager.enable = true;
+    wayland.windowManager.hyprland.settings.bind = let
+      chord = "SUPER + CTRL + ALT + SHIFT + F13";
+      hex = lib.getExe home.config.programs.hex.package;
+    in [
+      {
+        _args = [
+          chord
+          (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} "${hex} dictation stop"})")
+          {release = true;}
+        ];
+      }
+      {_args = [chord (lib.generators.mkLuaInline "hl.dsp.global(\"discord:discord-push-to-mute\")")];}
+      {_args = [chord (lib.generators.mkLuaInline "hl.dsp.exec_cmd(${lib.generators.toLua {} "${hex} dictation start"})")];}
+    ];
     stylix.targets.rofi.enable = false;
     programs.git.settings.user = {
       email = "turing@itsEthan.dev";

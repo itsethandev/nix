@@ -11,6 +11,9 @@ The modifier keys group hotkeys by purpose, so you can use the combination to an
 | `Super + key` | Window and workspace controls, layouts, core menus, and universal editing actions |
 | `Super + Shift + key` | Launching apps |
 | `Super + Ctrl + key` | System controls, panels, menus, and quick actions |
+| `Hyper + F13–F24` | Reserved for keyboard macro hotkeys |
+
+`Hyper` means `Super + Ctrl + Alt + Shift`.
 
 Adding `Alt` changes how the same action works; it never assigns an unrelated action to that hotkey.
 
@@ -81,6 +84,12 @@ Numbered workspace hotkeys cover workspaces 1–10; `0` selects workspace 10.
 | `Super + Ctrl + V` | Hold to mute only Discord (requires its Push to Mute keybind and Voice Activity mode) |
 | `Super + Ctrl + P` | Take an immediate screenshot of the current monitor |
 | `Super + Ctrl + Alt + P` | Toggle the frozen screenshot picker: drag a region, click a window, or click background for the monitor; press `E` or `A` before selecting to annotate |
+
+## Keyboard macro hotkeys
+
+| Hotkey | Action |
+| --- | --- |
+| `Hyper + F13` | Hold to dictate while muting Discord; release to stop dictation and unmute (requires Discord's Push to Mute keybind and Voice Activity mode) |
 
 ## Multimedia
 
