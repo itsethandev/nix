@@ -3,8 +3,11 @@
     config,
     lib,
     options,
+    pkgs,
     ...
   }: {
+    home.packages = [pkgs.opencode-desktop];
+
     programs.opencode = {
       enable = lib.mkDefault true;
       # Pinned Stylix still selects its theme through the obsolete V1 setting.
