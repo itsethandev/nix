@@ -8,7 +8,7 @@ Installs [shared agent CLI tools](../../modules/agent-tools) into the user envir
 
 Adds `Hyper + F13` to hold dictation and Discord push-to-mute together, leaving their individual bindings unchanged. See [Hotkeys](../../docs/hotkeys.md#keyboard-macro-hotkeys).
 
-Declares Tailscale Serve at `turing.tailnet.ethanbrady.xyz`: HTTPS port 443 proxies `/` to Ovis on `127.0.0.1:7317`, and HTTPS ports 3000 and 5173 proxy `/` to local HTTP development servers on the same ports. The declaration replaces all existing Serve and Funnel settings; no other routes are retained.
+Declares Tailscale Serve at `turing.tailnet.ethanbrady.xyz`: HTTPS port 443 proxies `/` to Ovis on `127.0.0.1:7317`, and HTTPS ports 8443 and 8444 proxy `/` to local HTTP development servers on `127.0.0.1:3000` and `127.0.0.1:5173`, respectively. Separate HTTPS ports leave development ports available for servers that bind to all interfaces. The declaration replaces all existing Serve and Funnel settings; no other routes are retained.
 
 Automatically logs into the graphical session and permits passwordless sudo for wheel members. SSH and Samba access use Tailscale interface rules; LocalSend and Steam also open firewall ports.
 

@@ -68,8 +68,8 @@
       serveHostname = "turing.tailnet.ethanbrady.xyz";
       httpsProxies = {
         "443" = 7317;
-        "3000" = 3000;
-        "5173" = 5173;
+        "8443" = 3000;
+        "8444" = 5173;
       };
     };
     networking.firewall.interfaces.tailscale0 = {
