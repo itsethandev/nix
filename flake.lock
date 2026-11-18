@@ -280,11 +280,11 @@
     "its-skills": {
       "flake": false,
       "locked": {
-        "lastModified": 1794706528,
-        "narHash": "sha256-zeTji5H2Z/zKxsC59TuH+UlWJHeyGjNdddntlKqxYFQ=",
+        "lastModified": 1794882599,
+        "narHash": "sha256-O6W05EbMRwE86jYQrrHwupskux/5Ih+FWb1M0nNhMRs=",
         "owner": "ItsEthanDev",
         "repo": "its-skills",
-        "rev": "97390c0e9b462f41f129db239bdb6678a73bb888",
+        "rev": "aa34d6fe62fcd43fe7acc54dc79d54b4fd72c9e9",
         "type": "github"
       },
       "original": {
