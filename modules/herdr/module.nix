@@ -5,7 +5,7 @@
     pkgs,
     ...
   }: {
-    home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [pkgs.libnotify];
+    home.packages = lib.optional (pkgs.stdenv.hostPlatform.isLinux && config.programs.herdr.settings.ui.toast.delivery == "system") pkgs.libnotify;
     programs.herdr = {
       enable = lib.mkDefault true;
       settings = {
@@ -16,7 +16,7 @@
         onboarding = lib.mkDefault false;
         terminal.default_shell = lib.mkDefault (lib.getExe pkgs.fish);
         theme.name = lib.mkDefault "terminal";
-        ui.toast.delivery = lib.mkDefault "system";
+        ui.toast.delivery = lib.mkDefault "off";
       };
     };
     systemd.user.services.herdr = lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && config.programs.herdr.enable) {

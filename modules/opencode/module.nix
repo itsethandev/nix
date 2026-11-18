@@ -41,7 +41,7 @@ in {
       # Pinned Stylix still selects its theme through the obsolete V1 setting.
       tui = lib.mkIf (options ? stylix.enable && config.stylix.enable) (lib.mkForce {});
       cli = {
-        attention.notifications = lib.mkDefault false;
+        attention.notifications = lib.mkDefault true;
         prompt.paste = lib.mkDefault "full";
         plugins = lib.mkIf config.programs.herdr.enable [
           "${config.xdg.configHome}/opencode/herdr-opencode"
