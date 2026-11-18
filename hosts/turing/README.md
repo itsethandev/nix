@@ -4,7 +4,7 @@
 
 Includes Hyprland and Noctalia, Omasnap screenshots, PipeWire audio, Steam and Steam Frame, OBS and DroidCam, Docker, 1Password, development tools, dictation, Ovis for Herdr, an [agent browser](../../modules/agent-browser) with Chromium and OpenCode integration, and media applications. Uses Limine, the latest kernel, declared filesystem UUIDs, and a fixed dual-monitor layout.
 
-Installs [shared agent CLI tools](../../modules/agent-tools) into the user environment for Pi and OpenCode, and [Obsidian](../../modules/obsidian) for notes without managing vaults or application settings.
+Installs [shared agent CLI tools](../../modules/agent-tools) into the user environment for Pi and OpenCode, the `playwright` CLI with Nix-managed browsers for web testing, and [Obsidian](../../modules/obsidian) for notes without managing vaults or application settings.
 
 Adds `Hyper + F13` to hold dictation and Discord push-to-mute together, leaving their individual bindings unchanged. See [Hotkeys](../../docs/hotkeys.md#keyboard-macro-hotkeys).
 

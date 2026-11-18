@@ -154,7 +154,7 @@
       vite-plus
     ];
     home = {
-      packages = with pkgs; [gcc javaPackages.compiler.temurin-bin.jre-25 pkg-config];
+      packages = with pkgs; [gcc javaPackages.compiler.temurin-bin.jre-25 pkg-config playwright-test];
       username = "ethan";
       homeDirectory = "/home/ethan";
       stateVersion = "25.11";
